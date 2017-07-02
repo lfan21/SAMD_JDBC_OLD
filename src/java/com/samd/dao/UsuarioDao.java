@@ -1,20 +1,23 @@
 
 package com.samd.dao;
 
-import com.samd.modelo.Usuarios;
+import com.samd.modelo.Usuario;
 import java.util.List;
 
 public interface UsuarioDao {
     
-    public List listarUsuarios();
+    public List<Usuario> listarUsuarios() throws Exception;
     
-    public void ingresarUsuario(Usuarios usuario);
+    public void ingresarUsuario(Usuario usuario) throws Exception;
     
-    public void eliminarUsuario(Usuarios usuario);
+    public void eliminarUsuario(Usuario usuario) throws Exception;
     
-    public void modificarUsuario (Usuarios usuario);
+    public void modificarUsuario (Usuario usuario) throws Exception;
     
-    public Usuarios validarUsuario (Usuarios usuario);
+    public Usuario validarUsuario (Usuario usuario) throws Exception;
+    
+
+   
     
     
     

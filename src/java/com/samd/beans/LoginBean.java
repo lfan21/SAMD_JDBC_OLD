@@ -2,8 +2,8 @@
 package com.samd.beans;
 
 import com.samd.dao.UsuarioDao;
-import com.samd.dao.UsuarioDaoImplementacion;
-import com.samd.modelo.Usuarios;
+import com.samd.dao.UsuarioDaoImp;
+import com.samd.modelo.Usuario;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -13,27 +13,27 @@ import org.apache.commons.codec.digest.DigestUtils;
 @SessionScoped
 public class LoginBean {
 
-    Usuarios usuario;
+    Usuario usuario;
 
     public LoginBean() {
         
-       this.usuario = new Usuarios();
+       this.usuario = new Usuario();
     }
 
-    public Usuarios getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuarios usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
-    public String validarDatosUsuario() {
+    public String validarDatosUsuario() throws Exception {
 
         String url = null;
         String encriptar = DigestUtils.sha1Hex(this.usuario.getContrasenia());
-        UsuarioDao usuarioDao = new UsuarioDaoImplementacion();
-        Usuarios us;
+        UsuarioDao usuarioDao = new UsuarioDaoImp();
+        Usuario us;
 
         this.usuario.setContrasenia(encriptar);
         

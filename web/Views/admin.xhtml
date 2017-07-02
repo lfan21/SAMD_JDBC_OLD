@@ -56,43 +56,54 @@
 
                 <h:form id="frmMostrarUsuarios">
 
-                    <p:dataTable var="us" value="#{adminBean.listaUsuarios}" emptyMessage="No hay registros"
+                    <p:dataTable id="dt" var="us" value="#{adminBean.listaUsuarios}" emptyMessage="No hay registros"
                                  paginator="true" rows="10" paginatorPosition="top" paginatorTemplate="{CurrentPageReport}
                                  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="10">
 
                         <p:column headerText="Nombre">             
-                            <h:outputText value="#{us.nombre}"/>
+                            <p:outputLabel value="#{us.nombre}"/>
                         </p:column>
 
                         <p:column headerText="Apellido">             
-                            <h:outputText value="#{us.apellido}"/>
+                            <h:outputLabel value="#{us.apellido}"/>
                         </p:column>
 
                         <p:column headerText="Cedula">             
-                            <h:outputText value="#{us.cedula}"/>
+                            <h:outputLabel value="#{us.cedula}"/>
                         </p:column>
 
 
                         <p:column headerText="Estado">             
-                            <h:outputText value="#{us.estado}"/>
+                            <h:outputLabel value="#{us.estado}">
+                                <f:converter converterId="estadoConversor"/>
+                            </h:outputLabel>
                         </p:column>
 
 
                         <p:column headerText="Rol">             
-                            <h:outputText value="#{us.idTipo}"/>
+                            <h:outputLabel value="#{us.idTipo}">
+                            
+                                <f:converter converterId="tipoUsuarioConversor"/>
+                            </h:outputLabel>
                         </p:column>
 
+                         <p:column headerText="Numero Docente">             
+                             <h:outputLabel value="#{us.nroDocente}"/>
+                        </p:column>
 
                         <p:column headerText="Modificar" >
 
-                            <p:commandButton value="Modificar" onclick="PF('dlgmodificar').show()" update=":frmModificar" icon="ui-icon-pencil">
+                            <p:commandButton value="Modificar" onclick="PF('dlgModificar').show();" icon="ui-icon-pencil" update=":frmModificar">
+
                                 <f:setPropertyActionListener target="#{adminBean.usuario}" value="#{us}"/>
+
                             </p:commandButton>
+
 
                         </p:column>
 
-                        <p:column headerText="Eliminar" >
+                        <p:column headerText="Eliminar" > 
 
                             <p:commandButton value="Eliminar" onclick ="PF('dlgEliminar').show()" icon="ui-icon-close">
                                 <f:setPropertyActionListener target="#{adminBean.usuario}" value="#{us}"/>
@@ -107,7 +118,7 @@
 
 
                 <p:dialog id="dlg" header="Modificar Datos" showEffect="explode" hideEffect="explode"
-                          widgetVar="dlgmodificar" modal="true" resizable="false" minWidth="200" >
+                          widgetVar="dlgModificar" modal="true" resizable="false" minWidth="200" >
 
                     <h:form id="frmModificar">
 
@@ -131,7 +142,7 @@
                         </p:panelGrid>
 
                         <p:commandButton value="Modificar Datos" actionListener="#{adminBean.modificarUsuario()}"
-                                         onclick="PF('dlgModificar').hide();" update=":frmMostrarUsuarios"/>
+                                         update=":frmMostrarUsuarios" onclick="PF('dlgModificar').hide();"/>
                     </h:form>
 
                 </p:dialog>
