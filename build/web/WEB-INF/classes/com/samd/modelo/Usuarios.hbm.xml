@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-jul-2017 22:47:41 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.samd.modelo.Usuarios" table="USUARIOS" catalog="samdbd" optimistic-lock="version">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="idUsuario" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="45" not-null="true" />
+        </property>
+        <property name="cedula" type="string">
+            <column name="cedula" length="45" not-null="true" />
+        </property>
+        <property name="contrasenia" type="string">
+            <column name="contrasenia" length="45" not-null="true" />
+        </property>
+        <property name="nroDocente" type="string">
+            <column name="nroDocente" length="45" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="45" not-null="true" />
+        </property>
+        <property name="idTipo" type="int">
+            <column name="IdTipo" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

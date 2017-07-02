@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../Templates/administradorTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form id="frmIngresar" >
+
+                    <h1>Bienvenido: #{adminBean.usuarioEnSesion().nombre} </h1>
+
+                    <h:panelGrid columns="2" cellpadding="5">
+
+                        <p:outputLabel value="Cedula:" />
+                        <p:inputMask  value="#{adminBean.usuario.cedula}" mask="99999999"/>
+
+                        <p:outputLabel value="Nombre:" />
+                        <p:inputText  value="#{adminBean.usuario.nombre}"/>
+
+                        <p:outputLabel value="Apellido:" />
+                        <p:inputText  value="#{adminBean.usuario.apellido}" />
+
+                        <h:outputLabel  value="Contraseña: *" />
+                        <p:password value="#{adminBean.usuario.contrasenia}" required="true" />
+
+                        <h:outputLabel  value="Tipo Usuario: *" />
+                        <h:selectOneMenu  value="#{adminBean.usuario.idTipo}" required="true">
+                            <f:selectItem itemLabel="Seleccionar Tipo Usuario" itemValue="" noSelectionOption="true" />
+                            <f:selectItem itemLabel="Administrador" itemValue="1" />
+                            <f:selectItem itemLabel="Docente" itemValue="2" />
+                            <f:selectItem itemLabel="Alumno" itemValue="3" />
+                        </h:selectOneMenu>
+
+                        <p:outputLabel   value="Numero Docente: " />
+                        <p:inputMask  value="#{adminBean.usuario.nroDocente}" mask=""/>
+
+                        <h:outputLabel  value="Estado: *" />
+                        <h:selectOneMenu  value="#{adminBean.usuario.estado}" required="true">
+                            <f:selectItem itemLabel="Seleccionar Estado" itemValue="" noSelectionOption="true" />
+                            <f:selectItem itemLabel="Activo" itemValue="1" />
+                            <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                        </h:selectOneMenu>
+
+                        <p:commandButton value="Ingresar Usuario" actionListener="#{adminBean.ingresarUsuario()}" update=":frmMostrarUsuarios"/>
+                        <p:commandButton  value="Limpiar" type="reset" />
+                    </h:panelGrid>
+
+                </h:form>       
+
+
+                <h:form id="frmMostrarUsuarios">
+
+                    <p:dataTable var="us" value="#{adminBean.listaUsuarios}" emptyMessage="No hay registros"
+                                 paginator="true" rows="10" paginatorPosition="top" paginatorTemplate="{CurrentPageReport}
+                                 {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="10">
+
+                        <p:column headerText="Nombre">             
+                            <h:outputText value="#{us.nombre}"/>
+                        </p:column>
+
+                        <p:column headerText="Apellido">             
+                            <h:outputText value="#{us.apellido}"/>
+                        </p:column>
+
+                        <p:column headerText="Cedula">             
+                            <h:outputText value="#{us.cedula}"/>
+                        </p:column>
+
+
+                        <p:column headerText="Estado">             
+                            <h:outputText value="#{us.estado}"/>
+                        </p:column>
+
+
+                        <p:column headerText="Rol">             
+                            <h:outputText value="#{us.idTipo}"/>
+                        </p:column>
+
+
+                        <p:column headerText="Modificar" >
+
+                            <p:commandButton value="Modificar" onclick="PF('dlgmodificar').show()" update=":frmModificar" icon="ui-icon-pencil">
+                                <f:setPropertyActionListener target="#{adminBean.usuario}" value="#{us}"/>
+                            </p:commandButton>
+
+                        </p:column>
+
+                        <p:column headerText="Eliminar" >
+
+                            <p:commandButton value="Eliminar" onclick ="PF('dlgEliminar').show()" icon="ui-icon-close">
+                                <f:setPropertyActionListener target="#{adminBean.usuario}" value="#{us}"/>
+                            </p:commandButton>
+
+                        </p:column>
+
+
+                    </p:dataTable>
+
+                </h:form>
+
+
+                <p:dialog id="dlg" header="Modificar Datos" showEffect="explode" hideEffect="explode"
+                          widgetVar="dlgmodificar" modal="true" resizable="false" minWidth="200" >
+
+                    <h:form id="frmModificar">
+
+                        <p:panelGrid columns="2">
+
+                            <p:outputLabel value="Nombre:"/>
+                            <p:inputText value="#{adminBean.usuario.nombre}"/>
+
+                            <p:outputLabel value="Apellido:"/>
+                            <p:inputText value="#{adminBean.usuario.apellido}"/>
+
+                            <p:outputLabel value="Cedula:"/>
+                            <p:inputText value="#{adminBean.usuario.cedula}"/>
+
+                            <p:outputLabel value="Rol:"/>
+                            <p:inputText value="#{adminBean.usuario.idTipo}"/>
+
+                            <p:outputLabel value="Estado:"/>
+                            <p:inputText value="#{adminBean.usuario.estado}"/>
+
+                        </p:panelGrid>
+
+                        <p:commandButton value="Modificar Datos" actionListener="#{adminBean.modificarUsuario()}"
+                                         onclick="PF('dlgModificar').hide();" update=":frmMostrarUsuarios"/>
+                    </h:form>
+
+                </p:dialog>
+
+
+                <p:dialog id="dlg2" header="Eliminar Usuario" showEffect="explode" hideEffect="explode"
+                          widgetVar="dlgEliminar" modal="true" resizable="false" minWidth="200"  dynamic="true">
+
+                    <h:form id="frmEliminar">
+
+                        <h:outputText value="Desea eliminar el Usuario?"/>
+                        <p:commandButton value="SI" actionListener="#{adminBean.eliminarUsuario()}" update=":frmMostrarUsuarios" onclick="PF('dlgEliminar').hide();"/>
+                        <p:commandButton value="NO" onclick="PF('dlgEliminar').hide();" />
+
+                    </h:form>
+
+                </p:dialog>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
