@@ -60,15 +60,14 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
 
         try {
             this.conectar();
-            consulta = "INSERT INTO USUARIOS (nombre, apellido, cedula, contrasenia, idTipo, nrodocente, estado) VALUES (?,?,?,?,?,?,?)";
+            consulta = "INSERT INTO USUARIOS (nombre, apellido, cedula, idTipo, nrodocente, estado) VALUES (?,?,?,?,?,?)";
             ps = this.getConn().prepareStatement(consulta);
             ps.setString(1, usuario.getNombre());
             ps.setString(2, usuario.getApellido());
             ps.setInt(3, usuario.getCedula());
-            ps.setString(4, usuario.getContrasenia());
-            ps.setInt(5, usuario.getIdTipo());
-            ps.setInt(6, usuario.getNroDocente());
-            ps.setInt(7, usuario.getEstado());
+            ps.setInt(4, usuario.getIdTipo());
+            ps.setInt(5, usuario.getNroDocente());
+            ps.setInt(6, usuario.getEstado());
 
             ps.executeUpdate();
             ps.close();
@@ -82,7 +81,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
     }
 
     @Override
-    public void eliminarUsuario(Usuario usuario) throws Exception {
+    public void modificarEstado(Usuario usuario) throws Exception {
 
         PreparedStatement ps;
         String consulta;

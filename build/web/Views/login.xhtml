@@ -9,14 +9,17 @@
         <title>Login</title>
     </h:head>
     <h:body>
-        
+        <p:growl id="mensajes" autoUpdate="true" showDetail="true"/>
         <h:form>
             <p:panel header="Login" style="width:500px">
                 <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputLabel value="Usuario:" />
-                    <p:inputMask value="#{loginBean.usuario.cedula}"  required="true" mask="99999999"/>
-                    <h:outputLabel value="Clave:" />
-                    <p:password value="#{loginBean.usuario.contrasenia}"  required="true"/>
+                    
+                    <h:outputLabel for="cedula" value="Usuario:" />
+                    <p:inputMask id="cedula" value="#{loginBean.usuario.cedula}"  required="true" mask="99999999" label="Cedula"/>
+                    
+                    
+                    <h:outputLabel for="clave" value="Clave:" />
+                    <p:password id="clave" value="#{loginBean.usuario.contrasenia}" required="true" label="Clave"/>
 
                 </h:panelGrid>
             </p:panel>

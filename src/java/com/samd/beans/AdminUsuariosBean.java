@@ -15,7 +15,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 @ManagedBean
 @SessionScoped
 
-public class AdminBean implements Serializable {
+public class AdminUsuariosBean implements Serializable {
 
     private Usuario usuario = new Usuario();
     private List<Usuario> listaUsuarios = new ArrayList();
@@ -33,12 +33,10 @@ public class AdminBean implements Serializable {
         this.usuario = usuario;
     }
 
-    public AdminBean() {
+    public AdminUsuariosBean() {
     }
 
     public void ingresarUsuario() throws Exception {
-        String encriptar = DigestUtils.sha1Hex(this.getUsuario().getContrasenia());
-        this.getUsuario().setContrasenia(encriptar);
         UsuarioDao usuarioDao = new UsuarioDaoImp();
         usuarioDao.ingresarUsuario(usuario);
 
@@ -52,7 +50,7 @@ public class AdminBean implements Serializable {
 
     public void eliminarUsuario() throws Exception {
         UsuarioDao usuarioDao = new UsuarioDaoImp();
-        usuarioDao.eliminarUsuario(usuario);
+        usuarioDao.modificarEstado(usuario);
 
     }
 

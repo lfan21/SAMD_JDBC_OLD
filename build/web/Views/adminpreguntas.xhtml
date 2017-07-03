@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../Templates/administradorTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid columns="2" cellpadding="5">
+
+                        <h:outputText value="Seleccione Tema:" />
+                        <p:selectOneButton value="#{selectOneView.option}">
+
+                            <f:selectItem itemLabel="Cascada" itemValue="Cascada" />
+                            <f:selectItem itemLabel="Iterativo Incremental" itemValue="IterativoIncremental" />
+                            <f:selectItem itemLabel="Espiral" itemValue="Espiral" />
+
+                        </p:selectOneButton>
+
+                        <p> Desarrolle la pregunta: </p>
+                        <p:editor id="editor" widgetVar="editorWidget" value="#{editorView.text}" width="600" />
+
+                        <p:outputLabel for="respuesta1" value="Respuesta 1: " />
+                        <p:inputText id="respuesta1" value=""/>
+
+                        <p:outputLabel for="respuesta2" value="Respuesta 2: " />
+                        <p:inputText id="respuesta2" value=""/>
+
+                        <p:outputLabel for="respuesta3" value="Respuesta 3: " />
+                        <p:inputText id="respuesta3" value=""/>
+
+                        <p:outputLabel for="respuesta4" value="Respuesta 4: " />
+                        <p:inputText id="respuesta4" value=""/>
+
+                        <h:panelGrid columns="2" cellpadding="5">
+
+                            <h:outputLabel  value="Seleccione Respusta Correcta: " />
+                            <h:selectOneMenu required="true">
+                                <f:selectItem itemLabel="Respuesta" itemValue="" noSelectionOption="true" />
+                                <f:selectItem itemLabel="1" itemValue="1" />
+                                <f:selectItem itemLabel="2" itemValue="2" />
+                                <f:selectItem itemLabel="3" itemValue="3" />
+                                <f:selectItem itemLabel="4" itemValue="4" />
+                            </h:selectOneMenu>
+
+                        </h:panelGrid>
+                        <br></br>
+
+                        <h:panelGrid columns="2" style="margin-top: 10px">
+
+                            <p:commandButton value="Guardar" update="" icon="ui-icon-disk" />
+                            <p:commandButton value="Limpiar Campos" type="reset" />
+
+
+                        </h:panelGrid>
+
+                    </h:panelGrid>
+
+                </h:form> 
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

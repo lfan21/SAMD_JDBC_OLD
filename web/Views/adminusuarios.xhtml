@@ -11,6 +11,8 @@
         <ui:composition template="./../Templates/administradorTemplate.xhtml">
 
             <ui:define name="content">
+                
+                <p:growl autoUpdate="true" id="mensajes" />
                 <h:form id="frmIngresar" >
 
                     <h1>Bienvenido: #{adminBean.usuarioEnSesion().nombre} </h1>
@@ -25,9 +27,6 @@
 
                         <p:outputLabel value="Apellido:" />
                         <p:inputText  value="#{adminBean.usuario.apellido}" />
-
-                        <h:outputLabel  value="Contraseña: *" />
-                        <p:password value="#{adminBean.usuario.contrasenia}" required="true" />
 
                         <h:outputLabel  value="Tipo Usuario: *" />
                         <h:selectOneMenu  value="#{adminBean.usuario.idTipo}" required="true">
@@ -105,7 +104,7 @@
 
                         <p:column headerText="Eliminar" > 
 
-                            <p:commandButton value="Eliminar" onclick ="PF('dlgEliminar').show()" icon="ui-icon-close">
+                            <p:commandButton value="Deshabilitar" onclick ="PF('dlgEliminar').show()" icon="ui-icon-close">
                                 <f:setPropertyActionListener target="#{adminBean.usuario}" value="#{us}"/>
                             </p:commandButton>
 
@@ -148,12 +147,12 @@
                 </p:dialog>
 
 
-                <p:dialog id="dlg2" header="Eliminar Usuario" showEffect="explode" hideEffect="explode"
+                <p:dialog id="dlg2" header="Deshabilitar Usuario" showEffect="explode" hideEffect="explode"
                           widgetVar="dlgEliminar" modal="true" resizable="false" minWidth="200"  dynamic="true">
 
                     <h:form id="frmEliminar">
 
-                        <h:outputText value="Desea eliminar el Usuario?"/>
+                        <h:outputText value="Desea deshabilitar el Usuario?"/>
                         <p:commandButton value="SI" actionListener="#{adminBean.eliminarUsuario()}" update=":frmMostrarUsuarios" onclick="PF('dlgEliminar').hide();"/>
                         <p:commandButton value="NO" onclick="PF('dlgEliminar').hide();" />
 
