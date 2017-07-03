@@ -45,7 +45,7 @@ public class LoginBean {
 
             switch (us.getIdTipo()) {
                 case 1:
-                    url = "/Views/admin.xhtml";
+                    url = "/Views/adminusuarios.xhtml";
                     break;
 
                 case 2:

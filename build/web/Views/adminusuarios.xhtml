@@ -15,21 +15,21 @@
                 <p:growl autoUpdate="true" id="mensajes" />
                 <h:form id="frmIngresar" >
 
-                    <h1>Bienvenido: #{adminBean.usuarioEnSesion().nombre} </h1>
+                    <h1>Bienvenido: #{adminUsuariosBean.usuarioEnSesion().nombre} </h1>
 
                     <h:panelGrid columns="2" cellpadding="5">
 
                         <p:outputLabel value="Cedula:" />
-                        <p:inputMask  value="#{adminBean.usuario.cedula}" mask="99999999"/>
+                        <p:inputMask  value="#{adminUsuariosBean.usuario.cedula}" mask="99999999"/>
 
                         <p:outputLabel value="Nombre:" />
-                        <p:inputText  value="#{adminBean.usuario.nombre}"/>
+                        <p:inputText  value="#{adminUsuariosBean.usuario.nombre}"/>
 
                         <p:outputLabel value="Apellido:" />
-                        <p:inputText  value="#{adminBean.usuario.apellido}" />
+                        <p:inputText  value="#{adminUsuariosBean.usuario.apellido}" />
 
                         <h:outputLabel  value="Tipo Usuario: *" />
-                        <h:selectOneMenu  value="#{adminBean.usuario.idTipo}" required="true">
+                        <h:selectOneMenu  value="#{adminUsuariosBean.usuario.idTipo}" required="true">
                             <f:selectItem itemLabel="Seleccionar Tipo Usuario" itemValue="" noSelectionOption="true" />
                             <f:selectItem itemLabel="Administrador" itemValue="1" />
                             <f:selectItem itemLabel="Docente" itemValue="2" />
@@ -37,16 +37,16 @@
                         </h:selectOneMenu>
 
                         <p:outputLabel   value="Numero Docente: " />
-                        <p:inputMask  value="#{adminBean.usuario.nroDocente}" mask=""/>
+                        <p:inputMask  value="#{adminUsuariosBean.usuario.nroDocente}" mask=""/>
 
                         <h:outputLabel  value="Estado: *" />
-                        <h:selectOneMenu  value="#{adminBean.usuario.estado}" required="true">
+                        <h:selectOneMenu  value="#{adminUsuariosBean.usuario.estado}" required="true">
                             <f:selectItem itemLabel="Seleccionar Estado" itemValue="" noSelectionOption="true" />
                             <f:selectItem itemLabel="Activo" itemValue="1" />
                             <f:selectItem itemLabel="Inactivo" itemValue="0" />
                         </h:selectOneMenu>
 
-                        <p:commandButton value="Ingresar Usuario" actionListener="#{adminBean.ingresarUsuario()}" update=":frmMostrarUsuarios"/>
+                        <p:commandButton value="Ingresar Usuario" actionListener="#{adminUsuariosBean.ingresarUsuario()}" update=":frmMostrarUsuarios"/>
                         <p:commandButton  value="Limpiar" type="reset" />
                     </h:panelGrid>
 
@@ -55,7 +55,7 @@
 
                 <h:form id="frmMostrarUsuarios">
 
-                    <p:dataTable id="dt" var="us" value="#{adminBean.listaUsuarios}" emptyMessage="No hay registros"
+                    <p:dataTable id="dt" var="us" value="#{adminUsuariosBean.listaUsuarios}" emptyMessage="No hay registros"
                                  paginator="true" rows="10" paginatorPosition="top" paginatorTemplate="{CurrentPageReport}
                                  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="10">
@@ -95,7 +95,7 @@
 
                             <p:commandButton value="Modificar" onclick="PF('dlgModificar').show();" icon="ui-icon-pencil" update=":frmModificar">
 
-                                <f:setPropertyActionListener target="#{adminBean.usuario}" value="#{us}"/>
+                                <f:setPropertyActionListener target="#{adminUsuariosBean.usuario}" value="#{us}"/>
 
                             </p:commandButton>
 
@@ -105,7 +105,7 @@
                         <p:column headerText="Eliminar" > 
 
                             <p:commandButton value="Deshabilitar" onclick ="PF('dlgEliminar').show()" icon="ui-icon-close">
-                                <f:setPropertyActionListener target="#{adminBean.usuario}" value="#{us}"/>
+                                <f:setPropertyActionListener target="#{adminUsuariosBean.usuario}" value="#{us}"/>
                             </p:commandButton>
 
                         </p:column>
@@ -124,23 +124,23 @@
                         <p:panelGrid columns="2">
 
                             <p:outputLabel value="Nombre:"/>
-                            <p:inputText value="#{adminBean.usuario.nombre}"/>
+                            <p:inputText value="#{adminUsuariosBean.usuario.nombre}"/>
 
                             <p:outputLabel value="Apellido:"/>
-                            <p:inputText value="#{adminBean.usuario.apellido}"/>
+                            <p:inputText value="#{adminUsuariosBean.usuario.apellido}"/>
 
                             <p:outputLabel value="Cedula:"/>
-                            <p:inputText value="#{adminBean.usuario.cedula}"/>
+                            <p:inputText value="#{adminUsuariosBean.usuario.cedula}"/>
 
                             <p:outputLabel value="Rol:"/>
-                            <p:inputText value="#{adminBean.usuario.idTipo}"/>
+                            <p:inputText value="#{adminUsuariosBean.usuario.idTipo}"/>
 
                             <p:outputLabel value="Estado:"/>
-                            <p:inputText value="#{adminBean.usuario.estado}"/>
+                            <p:inputText value="#{adminUsuariosBean.usuario.estado}"/>
 
                         </p:panelGrid>
 
-                        <p:commandButton value="Modificar Datos" actionListener="#{adminBean.modificarUsuario()}"
+                        <p:commandButton value="Modificar Datos" actionListener="#{adminUsuariosBean.modificarUsuario()}"
                                          update=":frmMostrarUsuarios" onclick="PF('dlgModificar').hide();"/>
                     </h:form>
 
@@ -153,7 +153,7 @@
                     <h:form id="frmEliminar">
 
                         <h:outputText value="Desea deshabilitar el Usuario?"/>
-                        <p:commandButton value="SI" actionListener="#{adminBean.eliminarUsuario()}" update=":frmMostrarUsuarios" onclick="PF('dlgEliminar').hide();"/>
+                        <p:commandButton value="SI" actionListener="#{adminUsuariosBean.eliminarUsuario()}" update=":frmMostrarUsuarios" onclick="PF('dlgEliminar').hide();"/>
                         <p:commandButton value="NO" onclick="PF('dlgEliminar').hide();" />
 
                     </h:form>
