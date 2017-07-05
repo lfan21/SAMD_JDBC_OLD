@@ -37,6 +37,7 @@ public class AdminUsuariosBean implements Serializable {
     }
 
     public void ingresarUsuario() throws Exception {
+      
         UsuarioDao usuarioDao = new UsuarioDaoImp();
         usuarioDao.ingresarUsuario(usuario);
 

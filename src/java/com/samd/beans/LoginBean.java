@@ -30,8 +30,9 @@ public class LoginBean {
 
     public String validarDatosUsuario() throws Exception {
 
+        String encriptar;
         String url = null;
-        String encriptar = DigestUtils.sha1Hex(this.usuario.getContrasenia());
+        encriptar = DigestUtils.md5Hex(this.usuario.getContrasenia());
         UsuarioDao usuarioDao = new UsuarioDaoImp();
         Usuario us;
 
