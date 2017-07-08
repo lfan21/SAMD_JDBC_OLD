@@ -32,11 +32,11 @@ public class LoginBean {
 
         String encriptar;
         String url = null;
-        encriptar = DigestUtils.md5Hex(this.usuario.getContrasenia());
+       // encriptar = DigestUtils.md5Hex(this.usuario.getContrasenia());
         UsuarioDao usuarioDao = new UsuarioDaoImp();
         Usuario us;
 
-        this.usuario.setContrasenia(encriptar);
+        //this.usuario.setContrasenia(encriptar);
         
         us = usuarioDao.validarUsuario(usuario);
 

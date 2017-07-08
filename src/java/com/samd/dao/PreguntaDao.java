@@ -1,7 +1,7 @@
 
 package com.samd.dao;
 
-import com.samd.modelo.Pregunta;
+import comn.samd.vo.PreguntaVo;
 import java.util.List;
 
 
@@ -9,11 +9,11 @@ public interface PreguntaDao {
     
     public List listarPreguntas();
     
-    public void ingresarPregunta(Pregunta pregunta);
+    public void ingresarPregunta(PreguntaVo preguntaVo) throws Exception;
     
-    public void modificarPregunta(Pregunta pregunta);
+    public void modificarPregunta(PreguntaVo preguntaVo);
     
-    public void eliminarPregunta (Pregunta pregunta);
+    public void eliminarPregunta (PreguntaVo preguntaVo);
     
     
     
