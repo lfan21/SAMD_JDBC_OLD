@@ -1,7 +1,7 @@
 package com.samd.dao;
 
 import com.samd.modelo.Pregunta;
-import comn.samd.vo.PreguntaVo;
+import com.samd.vo.PreguntaVo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

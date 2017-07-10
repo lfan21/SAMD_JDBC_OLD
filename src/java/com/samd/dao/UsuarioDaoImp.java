@@ -21,7 +21,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
 
         try {
             this.conectar();
-            consulta = "SELECT * FROM Usuarios";
+            consulta = "SELECT * FROM Usuarios where estado=1";
             st = this.getConn().createStatement();
             rs = st.executeQuery(consulta);
             lstUsuarios = new ArrayList<>();
@@ -32,7 +32,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
                 us.setApellido(rs.getString("apellido"));
                 us.setCedula(rs.getInt("cedula"));
                 us.setContrasenia(rs.getString("contrasenia"));
-                us.setIdTipo(rs.getInt("idTipo"));
+                us.setIdTipo(rs.getInt("TIPO_USUARIO_idTipo"));
                 us.setNroDocente(rs.getInt("nroDocente"));
                 us.setEstado(rs.getInt("estado"));
                 lstUsuarios.add(us);
@@ -60,7 +60,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
 
         try {
             this.conectar();
-            consulta = "INSERT INTO USUARIOS (nombre, apellido, cedula, idTipo, nrodocente, estado) VALUES (?,?,?,?,?,?)";
+            consulta = "INSERT INTO USUARIOS (nombre, apellido, cedula, TIPO_USUARIO_idTipo, nrodocente, estado) VALUES (?,?,?,?,?,?)";
             ps = this.getConn().prepareStatement(consulta);
             ps.setString(1, usuario.getNombre());
             ps.setString(2, usuario.getApellido());
@@ -81,7 +81,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
     }
 
     @Override
-    public void modificarEstado(Usuario usuario) throws Exception {
+    public void eliminarUsuario(Usuario usuario) throws Exception {
 
         PreparedStatement ps;
         String consulta;
@@ -115,7 +115,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
 
         try {
             this.conectar();
-            consulta = "UPDATE Usuarios SET nombre = ?, apellido = ? , cedula = ?, nrodocente = ?, estado = ? , idTipo = ? WHERE idUsuario = ?";
+            consulta = "UPDATE Usuarios SET nombre = ?, apellido = ? , cedula = ?, nrodocente = ?, estado = ? , TIPO_USUARIO_idTipo = ? WHERE idUsuario = ?";
             ps = this.getConn().prepareStatement(consulta);
             ps.setString(1, usuario.getNombre());
             ps.setString(2, usuario.getApellido());

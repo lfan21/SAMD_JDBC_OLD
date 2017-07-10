@@ -3,6 +3,7 @@ package com.samd.beans;
 
 import com.samd.dao.UsuarioDao;
 import com.samd.dao.UsuarioDaoImp;
+import com.samd.fachada.Fachada;
 import com.samd.modelo.Usuario;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -14,6 +15,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 public class LoginBean {
 
     Usuario usuario;
+    private Fachada fachada = Fachada.getInstancia();
 
     public LoginBean() {
         
@@ -30,7 +32,7 @@ public class LoginBean {
 
     public String validarDatosUsuario() throws Exception {
 
-        String encriptar;
+//        String encriptar;
         String url = null;
        // encriptar = DigestUtils.md5Hex(this.usuario.getContrasenia());
         UsuarioDao usuarioDao = new UsuarioDaoImp();
@@ -46,15 +48,15 @@ public class LoginBean {
 
             switch (us.getIdTipo()) {
                 case 1:
-                    url = "/Views/adminusuarios.xhtml";
+                    url = "/Views/admoin/adminusuarios.xhtml";
                     break;
 
                 case 2:
-                    url = "/Views/docente.xhtml";
+                    url = "/Views/docente/docente.xhtml";
                     break;
 
                 case 3:
-                    url = "/Views/alumno.xhtml";
+                    url = "/Views/alumno/alumno.xhtml";
                     break;
 
             }

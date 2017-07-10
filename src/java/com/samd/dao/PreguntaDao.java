@@ -1,7 +1,7 @@
 
 package com.samd.dao;
 
-import comn.samd.vo.PreguntaVo;
+import com.samd.vo.PreguntaVo;
 import java.util.List;
 
 

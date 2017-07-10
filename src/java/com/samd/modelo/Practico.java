@@ -2,7 +2,7 @@
 package com.samd.modelo;
 
 
-public class Practico {
+public class Practico extends Tema{
     
     private int puntaje;
 

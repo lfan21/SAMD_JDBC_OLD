@@ -1,5 +1,5 @@
 
-package comn.samd.vo;
+package com.samd.vo;
 
 import com.samd.modelo.Pregunta;
 import java.io.Serializable;

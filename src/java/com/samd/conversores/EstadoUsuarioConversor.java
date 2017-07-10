@@ -6,7 +6,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 @FacesConverter("estadoConversor")
-public class estadoUsuarioConversor implements Converter {
+public class EstadoUsuarioConversor implements Converter {
 
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {

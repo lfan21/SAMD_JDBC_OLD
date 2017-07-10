@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../Templates/administradorTemplate.xhtml">
+
+            <ui:define name="content">
+                <p:growl autoUpdate="true" id="mensajes" />
+                <h:form id="frmIngresar" >
+
+                    <h1>Bienvenido: </h1>
+
+                    <h:panelGrid columns="2" cellpadding="5">
+
+                        <p:outputLabel value="Cedula:" />
+                        <p:inputMask id="cedula" value="#{adminUsuariosBean.usuario.cedula}" mask="9999999999" required="true"/>
+
+                        <p:outputLabel value="Nombre:" />
+                        <p:inputText  value="#{adminUsuariosBean.usuario.nombre}" required="true"/>
+
+                        <p:outputLabel value="Apellido:" />
+                        <p:inputText  value="#{adminUsuariosBean.usuario.apellido}" required="true" />
+
+                        <h:outputLabel  value="Tipo Usuario: *" />
+                        <h:selectOneMenu  value="#{adminUsuariosBean.usuario.idTipo}" required="true">
+                            <f:selectItem itemLabel="Seleccionar Tipo Usuario" itemValue="" noSelectionOption="true" />
+                            <f:selectItem itemLabel="Administrador" itemValue="1" />
+                            <f:selectItem itemLabel="Docente" itemValue="2" />
+                            <f:selectItem itemLabel="Alumno" itemValue="3" />
+                        </h:selectOneMenu>
+
+                        <p:commandButton value="Ingresar Usuario" actionListener="#{adminUsuariosBean.ingresarUsuario()}"/>
+                        <p:commandButton  value="Limpiar" type="reset" />
+                    </h:panelGrid>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

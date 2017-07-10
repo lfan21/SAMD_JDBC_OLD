@@ -18,20 +18,41 @@
         <div id="top">
             <ui:insert name="top">
 
+
                 <h:form>  
                     <p:growl id="messages"/>
 
                     <p:menubar>
 
-                        <p:menuitem value="Usuarios" url="/Views/adminusuarios.xhtml" />
-                         <p:menuitem value="Ingresar Preguntas" url="/Views/adminpreguntas.xhtml"/>
-                        
+                        <p:submenu label="Administración de Usuarios" icon="ui-icon-person">
+                            <p:menuitem value="Ingresar Usuario" icon="ui-icon-plus" url="ingresarUsuario.xhtml" />
+                            <p:menuitem value="Buscar Usuario" icon="ui-icon-plus" url="buscarUsuario.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Administración de Contenido" icon="ui-icon-pencil">
+
+                            <p:submenu label="Teórico">
+                                <p:menuitem value="Ingresar Teórico" icon="ui-icon-plus" url="ingresarTeorico.xhtml" />
+                                <p:menuitem value="Modificar Teórico" url="#" icon="ui-icon-pencil"/>
+                                <p:menuitem value="Eliminar Teórico" url="#" icon="ui-icon-minusthick" />
+                            </p:submenu>
+                            <p:submenu label="Preguntas">
+                                <p:menuitem value="Ingresar Pregunta" icon="ui-icon-plus" url="ingresarPregunta.xhtml" />
+                                <p:menuitem value="Eliminar Pregunta" icon="ui-icon-minusthick" url="#" />
+                            </p:submenu>
+                            <p:submenu label="Evaluación">
+                                <p:menuitem value="Ingresar Evaluación" icon="ui-icon-plus" url="#" />
+                                <p:menuitem value="Modificar Evaluación" url="#" icon="ui-icon-pencil" />
+                                <p:menuitem value="Eliminar Evaluación" icon="ui-icon-minusthick" url="#" />
+                            </p:submenu>
+
+                        </p:submenu>
+
                         <f:facet name="options">
-                           
+
                             <p:commandButton type="button" value="Cerrar Sesión" icon="ui-icon-extlink" />
                         </f:facet>
-                        
-                        
+
+
                     </p:menubar>
                 </h:form>
 

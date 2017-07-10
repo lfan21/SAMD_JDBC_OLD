@@ -10,7 +10,7 @@ public interface UsuarioDao {
     
     public void ingresarUsuario(Usuario usuario) throws Exception;
     
-    public void modificarEstado(Usuario usuario) throws Exception;
+    public void eliminarUsuario(Usuario usuario) throws Exception;
     
     public void modificarUsuario (Usuario usuario) throws Exception;
     

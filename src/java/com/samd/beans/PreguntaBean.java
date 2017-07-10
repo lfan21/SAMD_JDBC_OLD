@@ -3,7 +3,7 @@ package com.samd.beans;
 import com.samd.dao.PreguntaDao;
 import com.samd.dao.PreguntaDaoImp;
 import com.samd.modelo.Pregunta;
-import comn.samd.vo.PreguntaVo;
+import com.samd.vo.PreguntaVo;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

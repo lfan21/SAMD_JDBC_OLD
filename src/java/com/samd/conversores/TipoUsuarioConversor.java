@@ -7,7 +7,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 @FacesConverter ("tipoUsuarioConversor")
-public class tipoUsuarioConversor implements Converter {
+public class TipoUsuarioConversor implements Converter {
 
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {

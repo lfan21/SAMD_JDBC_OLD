@@ -8,40 +8,40 @@
 
     <body>
 
-        <ui:composition template="./../Templates/administradorTemplate.xhtml">
+        <ui:composition template="./../../Templates/administradorTemplate.xhtml">
 
             <ui:define name="content">
                 <h:form>
                     <h:panelGrid columns="2" cellpadding="5">
 
                         <h:outputText value="Seleccione Tema:" />
-                        <p:selectOneButton value="#{preguntaBean.idTema}">
+                        <p:selectOneButton value="#{selectOneView.option}">
 
-                            <f:selectItem itemLabel="Cascada" itemValue="1" />
-                            <f:selectItem itemLabel="Iterativo Incremental" itemValue="2" />
-                            <f:selectItem itemLabel="Espiral" itemValue="3" />
+                            <f:selectItem itemLabel="Cascada" itemValue="Cascada" />
+                            <f:selectItem itemLabel="Iterativo Incremental" itemValue="IterativoIncremental" />
+                            <f:selectItem itemLabel="Espiral" itemValue="Espiral" />
 
                         </p:selectOneButton>
 
                         <p> Desarrolle la pregunta: </p>
-                        <p:inputText value="#{preguntaBean.pregunta.pregunta}"/>
+                        <p:editor id="editor" widgetVar="editorWidget" value="#{editorView.text}" width="600" />
 
                         <p:outputLabel for="respuesta1" value="Respuesta 1: " />
-                        <p:inputText id="respuesta1" value="#{preguntaBean.pregunta.respuesta1}"/>
+                        <p:inputText id="respuesta1" value=""/>
 
                         <p:outputLabel for="respuesta2" value="Respuesta 2: " />
-                        <p:inputText id="respuesta2" value="#{preguntaBean.pregunta.respuesta2}"/>
+                        <p:inputText id="respuesta2" value=""/>
 
                         <p:outputLabel for="respuesta3" value="Respuesta 3: " />
-                        <p:inputText id="respuesta3" value="#{preguntaBean.pregunta.respuesta3}"/>
+                        <p:inputText id="respuesta3" value=""/>
 
                         <p:outputLabel for="respuesta4" value="Respuesta 4: " />
-                        <p:inputText id="respuesta4" value="#{preguntaBean.pregunta.respuesta4}"/>
+                        <p:inputText id="respuesta4" value=""/>
 
                         <h:panelGrid columns="2" cellpadding="5">
 
-                            <h:outputLabel  value="Seleccione Respuesta Correcta: " />
-                            <h:selectOneMenu required="true" value="#{preguntaBean.pregunta.respuestaCorrecta}" >
+                            <h:outputLabel  value="Seleccione Respusta Correcta: " />
+                            <h:selectOneMenu required="true">
                                 <f:selectItem itemLabel="Respuesta" itemValue="" noSelectionOption="true" />
                                 <f:selectItem itemLabel="1" itemValue="1" />
                                 <f:selectItem itemLabel="2" itemValue="2" />
@@ -54,7 +54,7 @@
 
                         <h:panelGrid columns="2" style="margin-top: 10px">
 
-                            <p:commandButton value="Guardar" icon="ui-icon-disk"  actionListener="#{preguntaBean.ingresarPregunta()}"/>
+                            <p:commandButton value="Guardar" update="" icon="ui-icon-disk" />
                             <p:commandButton value="Limpiar Campos" type="reset" />
 
 
@@ -62,7 +62,7 @@
 
                     </h:panelGrid>
 
-                </h:form> 
+                </h:form>  
             </ui:define>
 
         </ui:composition>

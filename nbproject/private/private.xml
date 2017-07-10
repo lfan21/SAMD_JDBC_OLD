@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/fernando/Desktop/SAMD_JDBC/src/java/com/samd/beans/Fachada.java</file>
-            <file>file:/Users/fernando/Desktop/SAMD_JDBC/src/java/com/samd/beans/AdminUsuariosBean.java</file>
+            <file>file:/Users/fernando/Desktop/SAMD_JDBC/web/Templates/administradorTemplate.xhtml</file>
+            <file>file:/Users/fernando/Desktop/SAMD_JDBC/web/Views/admin/ingresarUsuario.xhtml</file>
+            <file>file:/Users/fernando/Desktop/SAMD_JDBC/web/Views/admin/ingresarTema.xhtml</file>
+            <file>file:/Users/fernando/Desktop/SAMD_JDBC/web/Views/admin/ingresarPregunta.xhtml</file>
+            <file>file:/Users/fernando/Desktop/SAMD_JDBC/web/Views/admin/buscarUsuario.xhtml</file>
         </group>
     </open-files>
 </project-private>
