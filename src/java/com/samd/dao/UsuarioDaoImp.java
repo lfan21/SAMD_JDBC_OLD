@@ -1,5 +1,6 @@
 package com.samd.dao;
 
+import com.samd.modelo.TipoUsuario;
 import com.samd.modelo.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -60,14 +61,14 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
 
         try {
             this.conectar();
-            consulta = "INSERT INTO USUARIOS (nombre, apellido, cedula, TIPO_USUARIO_idTipo, nrodocente, estado) VALUES (?,?,?,?,?,?)";
+            consulta = "INSERT INTO USUARIOS (nombre, apellido, cedula, TIPO_USUARIO_idTipo, nrodocente) VALUES (?,?,?,?,?)";
             ps = this.getConn().prepareStatement(consulta);
             ps.setString(1, usuario.getNombre());
             ps.setString(2, usuario.getApellido());
             ps.setInt(3, usuario.getCedula());
             ps.setInt(4, usuario.getIdTipo());
             ps.setInt(5, usuario.getNroDocente());
-            ps.setInt(6, usuario.getEstado());
+            
 
             ps.executeUpdate();
             ps.close();
@@ -173,5 +174,44 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
         return us;
 
     }
+
+    @Override
+    public List<TipoUsuario> cargarComboTipoUsuario() throws Exception {
+        
+        List<TipoUsuario> listTipoUsuario = null;
+        TipoUsuario tu;
+        String consulta;
+        Statement st;
+        ResultSet rs;
+                
+        try {
+            this.conectar();
+            consulta = "SELECT * FROM TIPO_USUARIO";
+            st = this.getConn().createStatement();
+            rs = st.executeQuery(consulta);
+            listTipoUsuario = new ArrayList<>();
+            while (rs.next()) {
+                tu = new TipoUsuario();
+                tu.setIdTipoUsuario(rs.getInt("idTipo"));
+                 tu.setDescripcion(rs.getString("descripcion"));
+                listTipoUsuario.add(tu);            
+            }
+            rs.close();
+            st.close();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+
+            throw ex;
+
+        } finally {
+            this.cerrarConexion();
+        }
+        
+        
+        
+        return listTipoUsuario;
+    }
+    
+    
 
 }

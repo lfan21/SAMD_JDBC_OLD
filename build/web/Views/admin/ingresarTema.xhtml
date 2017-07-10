@@ -3,20 +3,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./../../Templates/administradorTemplate.xhtml">
 
             <ui:define name="content">
-                <h:form>         
+                <h:form>
+
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                        <h:outputText value="Seleccione Tema:" />
+                        <p:selectOneButton value="#{selectOneView.option}">
+                            <f:selectItem itemLabel="Cascada" itemValue="Cascada" />
+                            <f:selectItem itemLabel="Iterativo Incremental" itemValue="Iterativo Incremental" />
+                            <f:selectItem itemLabel="Espiral" itemValue="Wii U" />
+                        </p:selectOneButton>
+                    </h:panelGrid>          
+
                     <h:panelGrid columns="2" cellpadding="5">
 
-                        <p:outputLabel for="nombreTema" value="Nombre de Tema" />
-                        <p:inputText id="nombreTema" value=""/>
+                        <p:outputLabel for="tituloTema" value="Titulo del Tema" />
+                        <p:inputText id="tituloTeorico" value=""/>
 
                         <h3 style="margin-top: 0">Descripción</h3>
+                        <p>Escriba contenido del Teorico: </p>
                         <p:editor id="editor" widgetVar="editorWidget" value="#{editorView.text}" width="600" />
 
                         <h:panelGrid columns="2" style="margin-top: 10px">

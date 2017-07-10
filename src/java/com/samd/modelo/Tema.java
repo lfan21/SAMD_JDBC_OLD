@@ -2,10 +2,19 @@ package com.samd.modelo;
 
 public class Tema {
 
+    private int idTema;
     private String nombre;
     private String descripcion;
 
     public Tema() {
+    }
+
+    public int getIdTema() {
+        return idTema;
+    }
+
+    public void setIdTema(int idTema) {
+        this.idTema = idTema;
     }
 
     public String getNombre() {
