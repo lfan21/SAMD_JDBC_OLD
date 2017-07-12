@@ -1,5 +1,6 @@
 package com.samd.dao;
 
+import com.samd.excepciones.PersistenciaExcepcion;
 import com.samd.modelo.TipoUsuario;
 import com.samd.modelo.Usuario;
 import java.sql.PreparedStatement;
@@ -12,7 +13,7 @@ import java.util.List;
 public class UsuarioDaoImp extends Conexion implements UsuarioDao {
 
     @Override
-    public List<Usuario> listarUsuarios() throws Exception {
+    public List<Usuario> listarUsuarios() throws PersistenciaExcepcion {
 
         Statement st;
         ResultSet rs;
@@ -42,11 +43,12 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
             rs.close();
             st.close();
 
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
 
-            throw ex;
+            throw new PersistenciaExcepcion("Ha ocurrido un error");
 
         } finally {
+
             this.cerrarConexion();
         }
 
@@ -54,7 +56,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
     }
 
     @Override
-    public void ingresarUsuario(Usuario usuario) throws Exception {
+    public void ingresarUsuario(Usuario usuario) throws PersistenciaExcepcion {
 
         PreparedStatement ps;
         String consulta;
@@ -68,13 +70,14 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
             ps.setInt(3, usuario.getCedula());
             ps.setInt(4, usuario.getIdTipo());
             ps.setInt(5, usuario.getNroDocente());
-            
 
+            //    if(ps.executeUpdate() == 0)
+            //ps.getGeneratedKeys()
             ps.executeUpdate();
             ps.close();
 
-        } catch (ClassNotFoundException | SQLException ex) {
-            throw ex;
+        } catch (SQLException e) {
+            throw new PersistenciaExcepcion("Ha ocurrido un error al ingresar el Usuario");
         } finally {
             this.cerrarConexion();
         }
@@ -82,7 +85,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
     }
 
     @Override
-    public void eliminarUsuario(Usuario usuario) throws Exception {
+    public void eliminarUsuario(Usuario usuario) throws PersistenciaExcepcion {
 
         PreparedStatement ps;
         String consulta;
@@ -97,10 +100,9 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
 
             ps.close();
 
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
 
-            System.out.println(ex.getMessage());
-            throw ex;
+            throw new PersistenciaExcepcion("Ha ocurrido un error al eliminar el usuario");
 
         } finally {
             this.cerrarConexion();
@@ -109,7 +111,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
     }
 
     @Override
-    public void modificarUsuario(Usuario usuario) throws Exception {
+    public void modificarUsuario(Usuario usuario) throws PersistenciaExcepcion {
 
         PreparedStatement ps;
         String consulta;
@@ -130,7 +132,9 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
 
             ps.close();
 
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
+
+            throw new PersistenciaExcepcion("Ha ocurrido un error al modificar el usuario");
         } finally {
 
             this.cerrarConexion();
@@ -138,7 +142,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
     }
 
     @Override
-    public Usuario validarUsuario(Usuario usuario) throws SQLException {
+    public Usuario validarUsuario(Usuario usuario) throws PersistenciaExcepcion {
 
         Usuario us = null;
         String consulta;
@@ -166,7 +170,9 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
                 us.setEstado(rs.getInt("estado"));
             }
 
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
+            throw new PersistenciaExcepcion("Ha ocurrido un error al intentar validar el usuario");
+
         } finally {
             this.cerrarConexion();
         }
@@ -176,14 +182,14 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
     }
 
     @Override
-    public List<TipoUsuario> cargarComboTipoUsuario() throws Exception {
-        
+    public List<TipoUsuario> cargarComboTipoUsuario() throws PersistenciaExcepcion {
+
         List<TipoUsuario> listTipoUsuario = null;
         TipoUsuario tu;
         String consulta;
         Statement st;
         ResultSet rs;
-                
+
         try {
             this.conectar();
             consulta = "SELECT * FROM TIPO_USUARIO";
@@ -193,25 +199,51 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
             while (rs.next()) {
                 tu = new TipoUsuario();
                 tu.setIdTipoUsuario(rs.getInt("idTipo"));
-                 tu.setDescripcion(rs.getString("descripcion"));
-                listTipoUsuario.add(tu);            
+                tu.setDescripcion(rs.getString("descripcion"));
+                listTipoUsuario.add(tu);
             }
             rs.close();
             st.close();
 
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
 
-            throw ex;
+            throw new PersistenciaExcepcion("Ha ocurrido un error al cargar el combo");
 
         } finally {
             this.cerrarConexion();
         }
-        
-        
-        
+
         return listTipoUsuario;
     }
-    
-    
 
+    @Override
+    public boolean existeUsuario(Usuario usuario) throws PersistenciaExcepcion {
+
+        String consulta;
+        boolean existe = false;
+        PreparedStatement ps;
+        ResultSet rs;
+
+        try {
+            this.conectar();
+            consulta = "SELECT cedula FROM USUARIOS WHERE CEDULA = ?";
+            ps = this.getConn().prepareStatement(consulta);
+            ps.setInt(1, usuario.getCedula());
+            rs = ps.executeQuery();
+
+            if (rs != null) {
+                existe = true;
+            }
+
+        } catch (SQLException ex) {
+
+            throw new PersistenciaExcepcion("Ha ocurrido un error en conexión");
+
+        } finally {
+            this.cerrarConexion();
+        }
+
+        return existe;
+
+    }
 }

@@ -4,16 +4,15 @@ import com.samd.dao.PreguntaDao;
 import com.samd.dao.PreguntaDaoImp;
 import com.samd.modelo.Pregunta;
 import com.samd.vo.PreguntaVo;
-import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class PreguntaBean implements Serializable{
-   
-     private Pregunta pregunta = new Pregunta();
-     private int idTema; 
+public class PreguntaBean {
+
+    private Pregunta pregunta = new Pregunta();
+    private int idTema;
 
     public PreguntaBean() {
     }
@@ -33,18 +32,17 @@ public class PreguntaBean implements Serializable{
     public void setIdTema(int idTema) {
         this.idTema = idTema;
     }
-    
+
     public void ingresarPregunta() throws Exception {
-        
+
         PreguntaDao preguntaDao = new PreguntaDaoImp();
         PreguntaVo preguntaVo = new PreguntaVo();
-        
+
         preguntaVo.setIdTema(this.idTema);
         preguntaVo.setPregunta(this.pregunta);
-        
-        
+
         preguntaDao.ingresarPregunta(preguntaVo);
-        
+
     }
-    
+
 }

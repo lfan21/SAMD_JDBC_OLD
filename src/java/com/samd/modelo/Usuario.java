@@ -1,6 +1,6 @@
 package com.samd.modelo;
 
-public class Usuario  implements java.io.Serializable {
+public class Usuario {
 
 
      private int idUsuario;

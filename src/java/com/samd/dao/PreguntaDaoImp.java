@@ -61,16 +61,12 @@ public class PreguntaDaoImp extends Conexion implements PreguntaDao {
             ps.execute();
             ps.close();
 
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
 
             throw e;
 
         } finally {
-            try {
-                this.cerrarConexion();
-            } catch (SQLException ex) {
-                Logger.getLogger(PreguntaDaoImp.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            this.cerrarConexion();
 
         }
 

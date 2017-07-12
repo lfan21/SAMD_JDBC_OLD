@@ -1,22 +1,25 @@
 package com.samd.beans;
 
+import com.samd.excepciones.PersistenciaExcepcion;
+import com.samd.excepciones.UsuarioExcepcion;
 import com.samd.fachada.Fachada;
 import com.samd.modelo.TipoUsuario;
 import com.samd.modelo.Usuario;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 @ManagedBean
 @SessionScoped
 
-public class AdminUsuariosBean implements Serializable {
+public class AdminUsuariosBean {
 
     private List listaUsuarios;
-    private Usuario usuario = new Usuario();;
+    private Usuario usuario = new Usuario();
     private int idTipoUsuario;
 
     public int getIdTipoUsuario() {
@@ -26,7 +29,6 @@ public class AdminUsuariosBean implements Serializable {
     public void setIdTipoUsuario(int idTipoUsuario) {
         this.idTipoUsuario = idTipoUsuario;
     }
-    
 
     private List<SelectItem> listaTipoUsuario;
 
@@ -34,11 +36,10 @@ public class AdminUsuariosBean implements Serializable {
 
     public AdminUsuariosBean() {
         listaUsuarios = new ArrayList();
-     
+
     }
 
-
-    public List<SelectItem> getListaTipoUsuario() throws Exception {
+    public List<SelectItem> getListaTipoUsuario() throws PersistenciaExcepcion {
 
         this.listaTipoUsuario = new ArrayList<>();
         List<TipoUsuario> aux = fachada.cargarCompoTipoUsuario();
@@ -73,9 +74,16 @@ public class AdminUsuariosBean implements Serializable {
         this.listaUsuarios = listaUsuarios;
     }
 
-    public void ingresarUsuario() throws Exception {
-        this.usuario.setIdTipo(idTipoUsuario);
-        fachada.ingresarUsuario(usuario);
+    public void ingresarUsuario() throws UsuarioExcepcion, PersistenciaExcepcion {
+
+        if (fachada.existeUsuario(usuario)) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "El usuario ya existe", "Error"));
+        } else {
+            this.usuario.setIdTipo(idTipoUsuario);
+            fachada.ingresarUsuario(usuario);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario ingresado correctamente", "Exito"));
+
+        }
     }
 
     public void eliminarUsuario() throws Exception {
