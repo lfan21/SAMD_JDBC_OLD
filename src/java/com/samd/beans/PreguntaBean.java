@@ -1,48 +1,35 @@
 package com.samd.beans;
 
-import com.samd.dao.PreguntaDao;
-import com.samd.dao.PreguntaDaoImp;
+import com.samd.excepciones.PersistenciaExcepcion;
+import com.samd.fachada.Fachada;
 import com.samd.modelo.Pregunta;
-import com.samd.vo.PreguntaVo;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
 public class PreguntaBean {
-
-    private Pregunta pregunta = new Pregunta();
-    private int idTema;
-
+    
+    private Pregunta pregunta;
+    private Fachada fachada;
+    
     public PreguntaBean() {
+        pregunta = new Pregunta();
+        fachada = Fachada.getInstancia();
     }
-
+    
     public Pregunta getPregunta() {
         return pregunta;
     }
-
+    
     public void setPregunta(Pregunta pregunta) {
         this.pregunta = pregunta;
     }
-
-    public int getIdTema() {
-        return idTema;
+    
+    public void ingresarPregunta() throws PersistenciaExcepcion {
+        
+        fachada.ingresarPregunta(this.pregunta);
+        
     }
-
-    public void setIdTema(int idTema) {
-        this.idTema = idTema;
-    }
-
-    public void ingresarPregunta() throws Exception {
-
-        PreguntaDao preguntaDao = new PreguntaDaoImp();
-        PreguntaVo preguntaVo = new PreguntaVo();
-
-        preguntaVo.setIdTema(this.idTema);
-        preguntaVo.setPregunta(this.pregunta);
-
-        preguntaDao.ingresarPregunta(preguntaVo);
-
-    }
-
+    
 }

@@ -30,7 +30,7 @@ public class AdminUsuariosBean {
         this.idTipoUsuario = idTipoUsuario;
     }
 
-    private List<SelectItem> listaTipoUsuario;
+    private List<SelectItem> listaComboTipoUsuario;
 
     private final Fachada fachada = Fachada.getInstancia();
 
@@ -41,21 +41,21 @@ public class AdminUsuariosBean {
 
     public List<SelectItem> getListaTipoUsuario() throws PersistenciaExcepcion {
 
-        this.listaTipoUsuario = new ArrayList<>();
-        List<TipoUsuario> aux = fachada.cargarCompoTipoUsuario();
+        this.listaComboTipoUsuario = new ArrayList<>();
+        List<TipoUsuario> listaAuxTipoUsuario = fachada.cargarCompoTipoUsuario();
 
-        listaTipoUsuario.clear();
+        listaComboTipoUsuario.clear();
 
-        for (TipoUsuario tu : aux) {
+        for (TipoUsuario tu : listaAuxTipoUsuario) {
             SelectItem tipoUsuarioItem = new SelectItem(tu.getIdTipoUsuario(), tu.getDescripcion());
-            this.listaTipoUsuario.add(tipoUsuarioItem);
+            this.listaComboTipoUsuario.add(tipoUsuarioItem);
         }
 
-        return listaTipoUsuario;
+        return listaComboTipoUsuario;
     }
 
     public void setListaTipoUsuario(List<SelectItem> listaTipoUsuario) {
-        this.listaTipoUsuario = listaTipoUsuario;
+        this.listaComboTipoUsuario = listaTipoUsuario;
     }
 
     public List getListaUsuarios() throws Exception {

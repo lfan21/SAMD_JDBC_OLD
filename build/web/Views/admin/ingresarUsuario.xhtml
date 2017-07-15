@@ -27,13 +27,16 @@
                         <p:outputLabel value="Apellido:" />
                         <p:inputText  value="#{adminUsuariosBean.usuario.apellido}" required="true" />
 
+                        <p:outputLabel value="Correo Electronico:" />
+                        <p:inputText  value="#{adminUsuariosBean.usuario.correoElectronico}" required="true" />
+
                         <h:outputLabel  value="Tipo Usuario: *" />
                         <h:selectOneMenu  value="#{adminUsuariosBean.idTipoUsuario}" required="true">
                             <f:selectItem itemLabel="-- Seleccione Tipo Usuario --" itemValue="" noSelectionOption="true" />
                             <f:selectItems value="#{adminUsuariosBean.listaTipoUsuario}" />
                         </h:selectOneMenu>
 
-                        <p:commandButton value="Ingresar Usuario" actionListener="#{adminUsuariosBean.ingresarUsuario()}"/>
+                        <p:commandButton value="Ingresar Usuario" actionListener="#{adminUsuariosBean.ingresarUsuario()}" />
                         <p:commandButton  value="Limpiar" type="reset" />
                     </h:panelGrid>
 

@@ -1,5 +1,7 @@
 package com.samd.fachada;
 
+import com.samd.dao.PreguntaDao;
+import com.samd.dao.PreguntaDaoImp;
 import com.samd.dao.TemaDao;
 import com.samd.dao.TemaDaoImp;
 import com.samd.dao.TeoricoDao;
@@ -8,6 +10,7 @@ import com.samd.dao.UsuarioDao;
 import com.samd.dao.UsuarioDaoImp;
 import com.samd.excepciones.PersistenciaExcepcion;
 import com.samd.excepciones.UsuarioExcepcion;
+import com.samd.modelo.Pregunta;
 import com.samd.modelo.Tema;
 import com.samd.modelo.Teorico;
 import com.samd.modelo.TipoUsuario;
@@ -31,12 +34,11 @@ public class Fachada {
 
 //    *****************************Metodos de Administracion de Usuarios**********************************
     public List<Usuario> getListaUsuarios() throws Exception {
-
         UsuarioDao usuarioDao = new UsuarioDaoImp();
         return usuarioDao.listarUsuarios();
     }
-    
-    public boolean existeUsuario(Usuario usuario) throws PersistenciaExcepcion{
+
+    public boolean existeUsuario(Usuario usuario) throws PersistenciaExcepcion {
         UsuarioDao usuarioDao = new UsuarioDaoImp();
         return usuarioDao.existeUsuario(usuario);
     }
@@ -65,25 +67,34 @@ public class Fachada {
 
 //    *******************************Fin de Administracion de Usuarios**************************************
 //    *******************************Administración de Temas **********************************************
-    public void ingresarTema(Tema tema) throws Exception {
+    public void ingresarTema(Tema tema) throws PersistenciaExcepcion {
 
         TemaDao temaDao = new TemaDaoImp();
         temaDao.ingresarTema(tema);
     }
 
-    //   ******************************** Fin Administración de Temas *****************************************
-//    *********************************Administraciòn de Teorico   **************************************///
-    public void ingresarTeorico(Teorico teorico) throws Exception {
-
-        TeoricoDao teoricoDao = new TeoricoDaoImp();
-        teoricoDao.ingresarTeorico(teorico);
-    }
-
-    public List<Tema> cargarComboTema() throws Exception {
-
+    public List<Tema> cargarComboTema() throws PersistenciaExcepcion {
         TemaDao temaDao = new TemaDaoImp();
         return temaDao.cargarComboTema();
 
     }
 
+//*********************************** Fin Administración de Temas *****************************************
+//*********************************** Administraciòn de Teorico********************************************
+    public void ingresarTeorico(Teorico teorico) throws Exception {
+
+        TeoricoDao teoricoDao = new TeoricoDaoImp();
+        teoricoDao.ingresarTeorico(teorico);
+    }
+//********************************** Gestion Preguntas ****************************************************
+
+    public void ingresarPregunta(Pregunta pregunta) throws PersistenciaExcepcion {
+        
+        PreguntaDao preguntaDao = new PreguntaDaoImp();
+        preguntaDao.ingresarPregunta(pregunta);
+
+    }
+
+//********************************** Gestion Preguntas ****************************************************
+    
 }

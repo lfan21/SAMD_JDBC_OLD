@@ -1,5 +1,6 @@
 package com.samd.dao;
 
+import com.samd.excepciones.PersistenciaExcepcion;
 import com.samd.modelo.Tema;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,11 +8,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.PersistenceException;
 
 public class TemaDaoImp extends Conexion implements TemaDao {
 
     @Override
-    public void ingresarTema(Tema tema) throws Exception {
+    public void ingresarTema(Tema tema) throws PersistenciaExcepcion {
 
         String consulta;
         PreparedStatement ps;
@@ -27,30 +29,30 @@ public class TemaDaoImp extends Conexion implements TemaDao {
             ps.executeUpdate();
 
             ps.close();
-            this.cerrarConexion();
+            
 
         } catch (SQLException ex) {
 
-            throw ex;
+            throw new PersistenceException("Error al ingresar el Tema");
         } finally {
+            this.cerrarConexion();
         }
     }
 
     @Override
-    public List<Tema> cargarComboTema() throws Exception {
+    public List<Tema> cargarComboTema() throws PersistenciaExcepcion {
 
-        List<Tema> listaTemas;
+        List<Tema> listaTemas = new ArrayList<>();;
         String consulta;
-        ResultSet rs = null;
+        ResultSet rs;
         Statement st = null;
 
         try {
             consulta = "SELECT idTema, nombre FROM TEMAS";
             this.conectar();
 
+            st = this.getConn().createStatement();
             rs = st.executeQuery(consulta);
-
-            listaTemas = new ArrayList<>();
 
             while (rs.next()) {
                 Tema tema = new Tema();
@@ -66,7 +68,7 @@ public class TemaDaoImp extends Conexion implements TemaDao {
 
         } catch (SQLException ex) {
 
-            throw ex;
+            throw new PersistenciaExcepcion("Error al cargarla lista de temas");
 
         } finally {
 

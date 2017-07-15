@@ -63,13 +63,14 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
 
         try {
             this.conectar();
-            consulta = "INSERT INTO USUARIOS (nombre, apellido, cedula, TIPO_USUARIO_idTipo, nrodocente) VALUES (?,?,?,?,?)";
+            consulta = "INSERT INTO USUARIOS (nombre, apellido, cedula, correoElectronico, TIPO_USUARIO_idTipo, nrodocente) VALUES (?,?,?,?,?,?)";
             ps = this.getConn().prepareStatement(consulta);
             ps.setString(1, usuario.getNombre());
             ps.setString(2, usuario.getApellido());
             ps.setInt(3, usuario.getCedula());
-            ps.setInt(4, usuario.getIdTipo());
-            ps.setInt(5, usuario.getNroDocente());
+            ps.setString(4, usuario.getCorreoElectronico());
+            ps.setInt(5, usuario.getIdTipo());
+            ps.setInt(6, usuario.getNroDocente());
 
             //    if(ps.executeUpdate() == 0)
             //ps.getGeneratedKeys()
@@ -118,15 +119,16 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
 
         try {
             this.conectar();
-            consulta = "UPDATE Usuarios SET nombre = ?, apellido = ? , cedula = ?, nrodocente = ?, estado = ? , TIPO_USUARIO_idTipo = ? WHERE idUsuario = ?";
+            consulta = "UPDATE Usuarios SET nombre = ?, apellido = ? , cedula = ?, correoElectronico = ?, nrodocente = ?, estado = ? , TIPO_USUARIO_idTipo = ? WHERE idUsuario = ?";
             ps = this.getConn().prepareStatement(consulta);
             ps.setString(1, usuario.getNombre());
             ps.setString(2, usuario.getApellido());
             ps.setInt(3, usuario.getCedula());
-            ps.setInt(4, usuario.getNroDocente());
-            ps.setInt(5, usuario.getEstado());
-            ps.setInt(6, usuario.getIdTipo());
-            ps.setInt(7, usuario.getIdUsuario());
+            ps.setString(4, usuario.getCorreoElectronico());
+            ps.setInt(5, usuario.getNroDocente());
+            ps.setInt(6, usuario.getEstado());
+            ps.setInt(7, usuario.getIdTipo());
+            ps.setInt(8, usuario.getIdUsuario());
 
             ps.executeUpdate();
 
@@ -231,13 +233,13 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
             ps.setInt(1, usuario.getCedula());
             rs = ps.executeQuery();
 
-            if (rs != null) {
+            if (rs.next()) {
                 existe = true;
             }
 
         } catch (SQLException ex) {
 
-            throw new PersistenciaExcepcion("Ha ocurrido un error en conexión");
+            throw new PersistenciaExcepcion("Ha ocurrido un error en la conexión");
 
         } finally {
             this.cerrarConexion();

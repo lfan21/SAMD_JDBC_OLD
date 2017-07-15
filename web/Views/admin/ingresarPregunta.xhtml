@@ -15,33 +15,32 @@
                     <h:panelGrid columns="2" cellpadding="5">
 
                         <h:outputText value="Seleccione Tema:" />
-                        <p:selectOneButton value="#{selectOneView.option}">
-
-                            <f:selectItem itemLabel="Cascada" itemValue="Cascada" />
-                            <f:selectItem itemLabel="Iterativo Incremental" itemValue="IterativoIncremental" />
-                            <f:selectItem itemLabel="Espiral" itemValue="Espiral" />
-
-                        </p:selectOneButton>
+                        
+                        <h:selectOneMenu value="#{preguntaBean.pregunta.idTema}" required="true">
+                            <f:selectItem itemLabel="-- Seleccione Tema --" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{temaBean.listaComboTipoTema}" />
+                        </h:selectOneMenu>
+                       
 
                         <p> Desarrolle la pregunta: </p>
-                        <p:editor id="editor" widgetVar="editorWidget" value="#{editorView.text}" width="600" />
+                        <p:inputTextarea value="#{preguntaBean.pregunta.pregunta}" cols="40" rows="4" />
 
                         <p:outputLabel for="respuesta1" value="Respuesta 1: " />
-                        <p:inputText id="respuesta1" value=""/>
+                        <p:inputText id="respuesta1" value="#{preguntaBean.pregunta.respuesta1}"/>
 
                         <p:outputLabel for="respuesta2" value="Respuesta 2: " />
-                        <p:inputText id="respuesta2" value=""/>
+                        <p:inputText id="respuesta2" value="#{preguntaBean.pregunta.respuesta2}"/>
 
                         <p:outputLabel for="respuesta3" value="Respuesta 3: " />
-                        <p:inputText id="respuesta3" value=""/>
+                        <p:inputText id="respuesta3" value="#{preguntaBean.pregunta.respuesta3}"/>
 
                         <p:outputLabel for="respuesta4" value="Respuesta 4: " />
-                        <p:inputText id="respuesta4" value=""/>
+                        <p:inputText id="respuesta4" value="#{preguntaBean.pregunta.respuesta4}"/>
 
                         <h:panelGrid columns="2" cellpadding="5">
 
                             <h:outputLabel  value="Seleccione Respusta Correcta: " />
-                            <h:selectOneMenu required="true">
+                            <h:selectOneMenu required="true" value="#{preguntaBean.pregunta.respuestaCorrecta}">
                                 <f:selectItem itemLabel="Respuesta" itemValue="" noSelectionOption="true" />
                                 <f:selectItem itemLabel="1" itemValue="1" />
                                 <f:selectItem itemLabel="2" itemValue="2" />
@@ -54,7 +53,7 @@
 
                         <h:panelGrid columns="2" style="margin-top: 10px">
 
-                            <p:commandButton value="Guardar" update="" icon="ui-icon-disk" />
+                            <p:commandButton value="Guardar" actionListener="#{preguntaBean.ingresarPregunta()}" icon="ui-icon-disk" />
                             <p:commandButton value="Limpiar Campos" type="reset" />
 
 

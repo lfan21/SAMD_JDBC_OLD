@@ -7,10 +7,21 @@ public class Usuario {
      private String nombre;
      private String apellido;
      private int cedula;
+     private String correoElectronico;
      private String contrasenia;
      private int nroDocente;
      private int estado;
      private int idTipo;
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+     
+     
 
     public int getIdUsuario() {
         return idUsuario;

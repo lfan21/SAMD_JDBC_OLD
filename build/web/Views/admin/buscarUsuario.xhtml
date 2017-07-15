@@ -30,6 +30,10 @@
                             <h:outputLabel value="#{us.cedula}"/>
                         </p:column>
 
+                        <p:column headerText="Correo Electronico">
+                            <h:outputLabel value="#{us.correoElectronico}"/>
+                        </p:column>
+
 
                         <p:column headerText="Estado">             
                             <h:outputLabel value="#{us.estado}">
@@ -89,6 +93,9 @@
 
                             <p:outputLabel value="Cedula:"/>
                             <p:inputText value="#{adminUsuariosBean.usuario.cedula}"/>
+                            
+                            <p:outputLabel value="Correo Electronico:"/>
+                            <p:inputText value="#{adminUsuariosBean.usuario.correoElectronico}"/>
 
                             <p:outputLabel value="Rol:"/>
                             <p:inputText value="#{adminUsuariosBean.usuario.idTipo}"/>

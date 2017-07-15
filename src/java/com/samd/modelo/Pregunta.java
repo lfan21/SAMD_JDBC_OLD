@@ -11,6 +11,15 @@ public class Pregunta implements Serializable{
     private String respuesta3;
     private String respuesta4;
     private int respuestaCorrecta;
+    private int idTema;
+
+    public int getIdTema() {
+        return idTema;
+    }
+
+    public void setIdTema(int idTema) {
+        this.idTema = idTema;
+    }
 
     public String getPregunta() {
         return pregunta;
