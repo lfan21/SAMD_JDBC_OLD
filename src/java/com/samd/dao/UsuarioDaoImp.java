@@ -37,6 +37,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
                 us.setIdTipo(rs.getInt("TIPO_USUARIO_idTipo"));
                 us.setNroDocente(rs.getInt("nroDocente"));
                 us.setEstado(rs.getInt("estado"));
+                us.setCorreoElectronico(rs.getString("correoElectronico"));
                 lstUsuarios.add(us);
 
             }

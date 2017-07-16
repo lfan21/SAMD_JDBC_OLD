@@ -5,6 +5,15 @@ public class Tema {
     private int idTema;
     private String nombre;
     private String descripcion;
+    private int estado;
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
 
     public Tema() {
     }
@@ -32,5 +41,19 @@ public class Tema {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public Tema(int idTema, String nombre, String descripcion, int estado) {
+        this.idTema = idTema;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.estado = estado;
+    }
+
+
+
+
+
+
+    
 
 }

@@ -19,8 +19,19 @@ import javax.faces.model.SelectItem;
 public class AdminUsuariosBean {
 
     private List listaUsuarios;
+    private List<Usuario> usuarioFiltrado;
     private Usuario usuario = new Usuario();
     private int idTipoUsuario;
+    private List<SelectItem> listaComboTipoUsuario;
+    private final Fachada fachada = Fachada.getInstancia();
+
+    public List<Usuario> getUsuarioFiltrado() {
+        return usuarioFiltrado;
+    }
+
+    public void setUsuarioFiltrado(List<Usuario> usuarioFiltrado) {
+        this.usuarioFiltrado = usuarioFiltrado;
+    }
 
     public int getIdTipoUsuario() {
         return idTipoUsuario;
@@ -29,10 +40,6 @@ public class AdminUsuariosBean {
     public void setIdTipoUsuario(int idTipoUsuario) {
         this.idTipoUsuario = idTipoUsuario;
     }
-
-    private List<SelectItem> listaComboTipoUsuario;
-
-    private final Fachada fachada = Fachada.getInstancia();
 
     public AdminUsuariosBean() {
         listaUsuarios = new ArrayList();

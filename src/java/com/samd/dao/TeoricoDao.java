@@ -9,7 +9,7 @@ import java.util.List;
 public interface TeoricoDao {
     
     
-    public List<Teorico> listarTeorico () throws PersistenciaExcepcion;
+    public List<Teorico> listarTeoricos () throws PersistenciaExcepcion;
     
     public void ingresarTeorico (Teorico teorico) throws PersistenciaExcepcion;
     

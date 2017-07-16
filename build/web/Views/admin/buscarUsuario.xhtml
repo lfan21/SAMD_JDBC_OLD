@@ -2,8 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
@@ -16,21 +16,28 @@
                     <p:dataTable id="dt" var="us" value="#{adminUsuariosBean.listaUsuarios}" emptyMessage="No hay registros"
                                  paginator="true" rows="10" paginatorPosition="top" paginatorTemplate="{CurrentPageReport}
                                  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="10">
+                                 rowsPerPageTemplate="10" widgetVar="dtUsuario" filteredValue="#{adminUsuariosBean.usuarioFiltrado}">
 
-                        <p:column headerText="Nombre">             
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="Buscar " />
+                                <p:inputText id="globalFilter" onkeyup="PF('dtUsuario').filter()" style="width:150px" />
+                            </p:outputPanel>
+                        </f:facet>
+
+                        <p:column headerText="Nombre" filterBy="#{us.nombre}" filterMatchMode="contains">             
                             <p:outputLabel value="#{us.nombre}"/>
                         </p:column>
 
-                        <p:column headerText="Apellido">             
+                        <p:column headerText="Apellido" filterBy="#{us.apellido}" filterMatchMode="contains">             
                             <h:outputLabel value="#{us.apellido}"/>
                         </p:column>
 
-                        <p:column headerText="Cedula">             
+                        <p:column headerText="Cedula" filterBy="#{us.cedula}" filterMatchMode="exact">             
                             <h:outputLabel value="#{us.cedula}"/>
                         </p:column>
 
-                        <p:column headerText="Correo Electronico">
+                        <p:column headerText="Correo" filterBy="#{us.correoElectronico}" filterMatchMode="contains">
                             <h:outputLabel value="#{us.correoElectronico}"/>
                         </p:column>
 
@@ -49,7 +56,7 @@
                             </h:outputLabel>
                         </p:column>
 
-                        <p:column headerText="Numero Docente">             
+                        <p:column headerText="Numero Docente" filterBy="#{us.nroDocente}" filterMatchMode="exact">             
                             <h:outputLabel value="#{us.nroDocente}"/>
                         </p:column>
 
@@ -93,15 +100,15 @@
 
                             <p:outputLabel value="Cedula:"/>
                             <p:inputText value="#{adminUsuariosBean.usuario.cedula}"/>
-                            
+
                             <p:outputLabel value="Correo Electronico:"/>
                             <p:inputText value="#{adminUsuariosBean.usuario.correoElectronico}"/>
 
                             <p:outputLabel value="Rol:"/>
-                            <p:inputText value="#{adminUsuariosBean.usuario.idTipo}"/>
+                            <h:selectOneMenu  value="#{adminUsuariosBean.usuario.idTipo}" required="true">
+                                <f:selectItems value="#{adminUsuariosBean.listaTipoUsuario}" />
+                            </h:selectOneMenu>
 
-                            <p:outputLabel value="Estado:"/>
-                            <p:inputText value="#{adminUsuariosBean.usuario.estado}"/>
 
                         </p:panelGrid>
 

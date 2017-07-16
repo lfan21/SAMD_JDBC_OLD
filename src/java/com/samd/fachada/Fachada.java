@@ -18,14 +18,14 @@ import com.samd.modelo.Usuario;
 import java.util.List;
 
 public class Fachada {
-
+    
     private static Fachada instancia = null;
-
+    
     public Fachada() {
     }
-
+    
     public static Fachada getInstancia() {
-
+        
         if (instancia == null) {
             instancia = new Fachada();
         }
@@ -37,30 +37,30 @@ public class Fachada {
         UsuarioDao usuarioDao = new UsuarioDaoImp();
         return usuarioDao.listarUsuarios();
     }
-
+    
     public boolean existeUsuario(Usuario usuario) throws PersistenciaExcepcion {
         UsuarioDao usuarioDao = new UsuarioDaoImp();
         return usuarioDao.existeUsuario(usuario);
     }
-
+    
     public void ingresarUsuario(Usuario usuario) throws PersistenciaExcepcion, UsuarioExcepcion {
         UsuarioDao usuarioDao = new UsuarioDaoImp();
         usuarioDao.ingresarUsuario(usuario);
     }
-
+    
     public void eliminarUsuario(Usuario usuario) throws Exception {
         UsuarioDao usuarioDao = new UsuarioDaoImp();
         usuarioDao.eliminarUsuario(usuario);
     }
-
+    
     public void modificarUsuario(Usuario usuario) throws PersistenciaExcepcion {
-
+        
         UsuarioDao usuarioDao = new UsuarioDaoImp();
         usuarioDao.modificarUsuario(usuario);
     }
-
+    
     public List<TipoUsuario> cargarCompoTipoUsuario() throws PersistenciaExcepcion {
-
+        
         UsuarioDao usuarioDao = new UsuarioDaoImp();
         return usuarioDao.cargarComboTipoUsuario();
     }
@@ -68,50 +68,77 @@ public class Fachada {
 //    *******************************Fin de Administracion de Usuarios**************************************
 //    *******************************Administración de Temas **********************************************
     public void ingresarTema(Tema tema) throws PersistenciaExcepcion {
-
+        
         TemaDao temaDao = new TemaDaoImp();
         temaDao.ingresarTema(tema);
     }
-
+    
     public List<Tema> cargarComboTema() throws PersistenciaExcepcion {
         TemaDao temaDao = new TemaDaoImp();
         return temaDao.cargarComboTema();
-
+        
+    }
+    
+    public List<Tema> listarTemas() throws PersistenciaExcepcion {
+        TemaDao temaDao = new TemaDaoImp();
+        return temaDao.listarTemas();
+    }
+    
+    public void eliminarTema(Tema tema) throws PersistenciaExcepcion {
+        TemaDao temaDao = new TemaDaoImp();
+        temaDao.eliminarTema(tema);
+        
+    }
+    
+    public void modificarTema (Tema tema) throws PersistenciaExcepcion{
+        
+        TemaDao temaDao = new TemaDaoImp();
+        temaDao.modificarTema(tema);
     }
 
 //*********************************** Fin Administración de Temas *****************************************
 //*********************************** Administraciòn de Teorico********************************************
     public void ingresarTeorico(Teorico teorico) throws PersistenciaExcepcion {
-
+        
         TeoricoDao teoricoDao = new TeoricoDaoImp();
         teoricoDao.ingresarTeorico(teorico);
     }
     
-    public List<Teorico> listarTeorico() throws PersistenciaExcepcion{
+    public List<Teorico> listarTeoricos() throws PersistenciaExcepcion {
         TeoricoDao teoricoDao = new TeoricoDaoImp();
-        return teoricoDao.listarTeorico();
+        return teoricoDao.listarTeoricos();
     }
     
-//********************************** Gestion Preguntas ****************************************************
+    public void eliminarTeorico(Teorico teorico) throws PersistenciaExcepcion{
+        TeoricoDao teoricoDao = new TeoricoDaoImp();
+        teoricoDao.eliminarTeorico(teorico);
+        
+    }
 
+    public void modificarTeorico(Teorico teorico) throws PersistenciaExcepcion{
+        
+        TeoricoDao teoricoDao = new TeoricoDaoImp();
+        teoricoDao.modificarTeorico(teorico);
+                
+    }
+//********************************** Gestion Preguntas ****************************************************
     public void ingresarPregunta(Pregunta pregunta) throws PersistenciaExcepcion {
         
         PreguntaDao preguntaDao = new PreguntaDaoImp();
         preguntaDao.ingresarPregunta(pregunta);
-
+        
     }
     
-    public List<Pregunta> listarPreguntas() throws PersistenciaExcepcion{
+    public List<Pregunta> listarPreguntas() throws PersistenciaExcepcion {
         
         PreguntaDao preguntaDao = new PreguntaDaoImp();
-        return preguntaDao.listarPreguntas();      
+        return preguntaDao.listarPreguntas();        
     }
     
-    public void eliminarPregunta(Pregunta pregunta) throws PersistenciaExcepcion{
+    public void eliminarPregunta(Pregunta pregunta) throws PersistenciaExcepcion {
         PreguntaDao preguntaDao = new PreguntaDaoImp();
-        preguntaDao.eliminarPregunta(pregunta);       
+        preguntaDao.eliminarPregunta(pregunta);        
     }
 
 //********************************** Gestion Preguntas ****************************************************
-    
 }

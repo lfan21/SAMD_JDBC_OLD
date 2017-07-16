@@ -6,16 +6,26 @@ import com.samd.modelo.Tema;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class TemaBean {
 
-    private final Fachada fachada;
+    private Fachada fachada;
     private Tema tema;
     private List<SelectItem> listaComboTipoTema;
+    private List<Tema> listaTemas;
+    private List<Tema> temaFiltrado;
+
+    public List<Tema> getListaTemas() throws PersistenciaExcepcion {
+        return fachada.listarTemas();
+    }
+
+    public void setListaTemas(List<Tema> listaTemas) {
+        this.listaTemas = listaTemas;
+    }
 
     public List<SelectItem> getListaComboTipoTema() throws PersistenciaExcepcion {
 
@@ -23,7 +33,6 @@ public class TemaBean {
         this.listaComboTipoTema.clear();
 
         listaAuxTipoTema = fachada.cargarComboTema();
-        
 
         for (Tema tema : listaAuxTipoTema) {
 
@@ -37,7 +46,6 @@ public class TemaBean {
     public void setListaComboTipoTema(List<SelectItem> listaComboTipoTema) {
         this.listaComboTipoTema = listaComboTipoTema;
     }
-    
 
     public Tema getTema() {
         return tema;
@@ -50,12 +58,30 @@ public class TemaBean {
     public TemaBean() {
         fachada = Fachada.getInstancia();
         tema = new Tema();
-        listaComboTipoTema = new ArrayList<>();
+        listaComboTipoTema =new ArrayList<>();
+        listaTemas = new ArrayList<>();
+    }
+
+    public List<Tema> getTemaFiltrado() {
+        return temaFiltrado;
+    }
+
+    public void setTemaFiltrado(List<Tema> temaFiltrado) {
+        this.temaFiltrado = temaFiltrado;
     }
 
     public void ingresartTema() throws Exception {
 
         fachada.ingresarTema(this.tema);
+
+    }
+
+    public void eliminarTema() throws PersistenciaExcepcion {
+        fachada.eliminarTema(this.tema);
+    }
+
+    public void modificarTema() throws PersistenciaExcepcion {
+        fachada.modificarTema(this.tema);
 
     }
 

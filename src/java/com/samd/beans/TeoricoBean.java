@@ -15,16 +15,23 @@ public class TeoricoBean {
     private Fachada fachada;
     private List<Teorico> listaTeoricos;
     private Teorico teorico;
+    private List<Teorico> teoricoFiltrado;
+
+    public List<Teorico> getTeoricoFiltrado() {
+        return teoricoFiltrado;
+    }
+
+    public void setTeoricoFiltrado(List<Teorico> teoricoFiltrado) {
+        this.teoricoFiltrado = teoricoFiltrado;
+    }
 
     public List<Teorico> getListaTeoricos() throws PersistenciaExcepcion {
-        return fachada.listarTeorico();
+        return fachada.listarTeoricos();
     }
 
     public void setListaTeoricos(List<Teorico> listaTeoricos) {
         this.listaTeoricos = listaTeoricos;
     }
-    
-    
 
     public Teorico getTeorico() {
         return teorico;
@@ -35,15 +42,21 @@ public class TeoricoBean {
     }
 
     public TeoricoBean() {
-
         fachada = Fachada.getInstancia();
-        teorico = new Teorico();
-        listaTeoricos = new ArrayList<>();
-
     }
 
     public void ingresarTeorico() throws PersistenciaExcepcion {
         fachada.ingresarTeorico(this.teorico);
+
+    }
+
+    public void modificarTeorico() throws PersistenciaExcepcion {
+        fachada.modificarTeorico(this.teorico);
+
+    }
+
+    public void eliminarTeorico() throws PersistenciaExcepcion {
+        fachada.eliminarTeorico(this.teorico);
 
     }
 
