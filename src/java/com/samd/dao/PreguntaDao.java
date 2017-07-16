@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface PreguntaDao {
     
-    public List listarPreguntas();
+    public List<Pregunta> listarPreguntas() throws PersistenciaExcepcion;
    
     public void ingresarPregunta(Pregunta pregunta) throws PersistenciaExcepcion;
     
-    public void modificarPregunta(Pregunta pregunta);
+    public void modificarPregunta(Pregunta pregunta) throws PersistenciaExcepcion;
     
-    public void eliminarPregunta (Pregunta pregunta);
+    public void eliminarPregunta (Pregunta pregunta)throws PersistenciaExcepcion;
     
     
     

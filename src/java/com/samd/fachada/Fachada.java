@@ -94,6 +94,17 @@ public class Fachada {
         preguntaDao.ingresarPregunta(pregunta);
 
     }
+    
+    public List<Pregunta> listarPreguntas() throws PersistenciaExcepcion{
+        
+        PreguntaDao preguntaDao = new PreguntaDaoImp();
+        return preguntaDao.listarPreguntas();      
+    }
+    
+    public void eliminarPregunta(Pregunta pregunta) throws PersistenciaExcepcion{
+        PreguntaDao preguntaDao = new PreguntaDaoImp();
+        preguntaDao.eliminarPregunta(pregunta);       
+    }
 
 //********************************** Gestion Preguntas ****************************************************
     

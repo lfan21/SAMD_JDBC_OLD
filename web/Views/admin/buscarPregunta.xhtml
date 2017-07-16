@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../Templates/administradorTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form id="frmPreguntas">
+
+                    <p:dataTable id="dt" var="preg" value="#{preguntaBean.listaPreguntas}" emptyMessage="No hay registros"
+                                 paginator="true" rows="10" paginatorPosition="top" paginatorTemplate="{CurrentPageReport}
+                                 {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="10">
+
+                        <p:column headerText="Pregunta">             
+                            <p:outputLabel value="#{preg.pregunta}"/>
+                        </p:column>
+
+                        <p:column headerText="Respuesta 1">             
+                            <h:outputLabel value="#{preg.respuesta1}"/>
+                        </p:column>
+
+                        <p:column headerText="Respuesta 2">             
+                            <h:outputLabel value="#{preg.respuesta2}"/>
+                        </p:column>
+
+                        <p:column headerText="Respuesta 3">
+                            <h:outputLabel value="#{preg.respuesta3}"/>
+                        </p:column>
+
+
+                        <p:column headerText="Respuesta 4">             
+                            <h:outputLabel value="#{preg.respuesta4}" />            
+                        </p:column>
+
+
+                        <p:column headerText="Respuesta Correcta">             
+                            <h:outputLabel value="#{preg.respuestaCorrecta}" />
+                        </p:column>
+
+                        <p:column headerText="Tema" >             
+                            <h:outputLabel value="#{preg.idTema}" />
+                        </p:column>
+
+                        <p:column headerText="Modificar" >
+                            <p:commandButton  value="Modificar" onclick="PF('dlgModificar').show();" icon="ui-icon-pencil">
+                                <f:setPropertyActionListener target="#{preg.pregunta}" value="#{preg}"/>
+                            </p:commandButton>
+                        </p:column>
+
+                        <p:column headerText="Eliminar" > 
+                            <p:commandButton value="Eliminar" onclick ="PF('dlgEliminar').show()"  icon="ui-icon-close">
+                                <f:setPropertyActionListener target="#{preguntaBean.pregunta}" value="#{preg}"/>
+                            </p:commandButton>
+                        </p:column>
+
+
+                    </p:dataTable>
+
+                </h:form>
+
+
+                <p:dialog id="dlg" header="Modificar Pregunta" showEffect="explode" hideEffect="explode"
+                          widgetVar="dlgModificar" modal="true" resizable="false" minWidth="200" >
+
+                    <h:form id="frmModificar">
+
+                        <p:panelGrid columns="2">
+
+                            <p:outputLabel value="Pregunta:"/>
+                            <p:inputText value="#{preguntaBean.pregunta.pregunta}"/>
+
+                            <p:outputLabel value="Respuesta 1:"/>
+                            <p:inputText value="#{preguntaBean.pregunta.respuesta1}"/>
+
+                            <p:outputLabel value="Respuesta 2:"/>
+                            <p:inputText value="#{preguntaBean.pregunta.respuesta2}"/>
+
+                            <p:outputLabel value="Respuesta 3:"/>
+                            <p:inputText value="#{preguntaBean.pregunta.respuesta3}"/>
+
+                            <p:outputLabel value="Respuesta 4:"/>
+                            <p:inputText value="#{preguntaBean.pregunta.respuesta4}"/>
+
+                            <p:outputLabel value="Respuesta Correcta: "/>
+                            <p:inputText value="#{preguntaBean.pregunta.respuestaCorrecta}"/>
+
+                            <p:outputLabel value="Tema "/>
+                            <h:selectOneMenu value="#{preguntaBean.pregunta.idTema}" required="true">
+                                <f:selectItem itemLabel="-- Seleccione Tema --" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{temaBean.listaComboTipoTema}" />
+                            </h:selectOneMenu>
+
+                        </p:panelGrid>
+
+                        <p:commandButton value="Modificar Pregunta"
+                                         update=":frmPreguntas" onclick="PF('dlgModificar').hide();"/>
+                    </h:form>
+
+                </p:dialog>
+
+                <p:dialog id="dlg2" header="Eliminar Pregunta" showEffect="explode" hideEffect="explode"
+                          widgetVar="dlgEliminar" modal="true" resizable="false" minWidth="200"  dynamic="true">
+
+                    <h:form id="frmEliminar">
+
+                        <h:outputText value="Desea eliminar la Pregunta?"/>
+                        <p:commandButton value="SI" actionListener="#{preguntaBean.eliminarPregunta()}" update=":frmPreguntas" onclick="PF('dlgEliminar').hide();"/>
+                        <p:commandButton value="NO" onclick="PF('dlgEliminar').hide();" />
+
+                    </h:form>
+                </p:dialog>
+
+
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

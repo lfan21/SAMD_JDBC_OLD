@@ -1,10 +1,8 @@
-
 package com.samd.modelo;
 
-import java.io.Serializable;
+public class Pregunta {
 
-public class Pregunta implements Serializable{
-    
+    private int idPregunta;
     private String pregunta;
     private String respuesta1;
     private String respuesta2;
@@ -12,6 +10,23 @@ public class Pregunta implements Serializable{
     private String respuesta4;
     private int respuestaCorrecta;
     private int idTema;
+    private int estado;
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public int getIdPregunta() {
+        return idPregunta;
+    }
+
+    public void setIdPregunta(int idPregunta) {
+        this.idPregunta = idPregunta;
+    }
 
     public int getIdTema() {
         return idTema;
@@ -71,7 +86,5 @@ public class Pregunta implements Serializable{
     public void setRespuestaCorrecta(int respuestaCorrecta) {
         this.respuestaCorrecta = respuestaCorrecta;
     }
-    
-    
-    
+
 }

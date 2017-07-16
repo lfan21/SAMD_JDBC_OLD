@@ -3,7 +3,7 @@ package com.samd.modelo;
 
 import java.io.Serializable;
 
-public class TipoUsuario implements Serializable {
+public class TipoUsuario  {
     
     private int idTipoUsuario;
     private String descripcion;
