@@ -6,6 +6,15 @@ public class Teorico {
     private String titulo;
     private String contenido;
     private int idTema;
+    private int estado;
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;

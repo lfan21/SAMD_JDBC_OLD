@@ -81,11 +81,17 @@ public class Fachada {
 
 //*********************************** Fin Administración de Temas *****************************************
 //*********************************** Administraciòn de Teorico********************************************
-    public void ingresarTeorico(Teorico teorico) throws Exception {
+    public void ingresarTeorico(Teorico teorico) throws PersistenciaExcepcion {
 
         TeoricoDao teoricoDao = new TeoricoDaoImp();
         teoricoDao.ingresarTeorico(teorico);
     }
+    
+    public List<Teorico> listarTeorico() throws PersistenciaExcepcion{
+        TeoricoDao teoricoDao = new TeoricoDaoImp();
+        return teoricoDao.listarTeorico();
+    }
+    
 //********************************** Gestion Preguntas ****************************************************
 
     public void ingresarPregunta(Pregunta pregunta) throws PersistenciaExcepcion {

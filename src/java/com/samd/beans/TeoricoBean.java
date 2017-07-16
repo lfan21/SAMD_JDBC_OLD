@@ -1,21 +1,30 @@
 package com.samd.beans;
 
+import com.samd.excepciones.PersistenciaExcepcion;
 import com.samd.fachada.Fachada;
-import com.samd.modelo.Tema;
 import com.samd.modelo.Teorico;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.model.SelectItem;
 
 @ManagedBean
 @RequestScoped
 public class TeoricoBean {
 
     private Fachada fachada;
-    private List<SelectItem> listaTipoTema;
-    private Teorico teorico = new Teorico();
+    private List<Teorico> listaTeoricos;
+    private Teorico teorico;
+
+    public List<Teorico> getListaTeoricos() throws PersistenciaExcepcion {
+        return fachada.listarTeorico();
+    }
+
+    public void setListaTeoricos(List<Teorico> listaTeoricos) {
+        this.listaTeoricos = listaTeoricos;
+    }
+    
+    
 
     public Teorico getTeorico() {
         return teorico;
@@ -25,30 +34,15 @@ public class TeoricoBean {
         this.teorico = teorico;
     }
 
-    public void setListaTipoTema(List<SelectItem> listaTipoTema) {
-        this.listaTipoTema = listaTipoTema;
-    }
-
     public TeoricoBean() {
 
         fachada = Fachada.getInstancia();
+        teorico = new Teorico();
+        listaTeoricos = new ArrayList<>();
 
     }
 
-    public List<SelectItem> getListaTipoTema() throws Exception {
-        this.listaTipoTema = new ArrayList<>();
-        List<Tema> aux = fachada.cargarComboTema();
-
-        listaTipoTema.clear();
-
-        for (Tema tt : aux) {
-            SelectItem tipoTemaItem = new SelectItem(tt.getIdTema(), tt.getNombre());
-            this.listaTipoTema.add(tipoTemaItem);
-        }
-        return listaTipoTema;
-    }
-
-    public void ingresarTeorico() throws Exception {
+    public void ingresarTeorico() throws PersistenciaExcepcion {
         fachada.ingresarTeorico(this.teorico);
 
     }
