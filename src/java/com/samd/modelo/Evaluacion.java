@@ -2,8 +2,9 @@
 package com.samd.modelo;
 
 
-public class Evaluacion extends Tema{
+public class Evaluacion {
     
+    private int idEvaluacionM;
     private int minimoAprobacion;
     private int puntajeObtenido;
 
@@ -22,6 +23,19 @@ public class Evaluacion extends Tema{
     public void setPuntajeObtenido(int puntajeObtenido) {
         this.puntajeObtenido = puntajeObtenido;
     }
+
+    public Evaluacion() {
+    }
+
+    public int getIdEvaluacionM() {
+        return idEvaluacionM;
+    }
+
+    public void setIdEvaluacionM(int idEvaluacionM) {
+        this.idEvaluacionM = idEvaluacionM;
+    }
+    
+    
     
     
 }

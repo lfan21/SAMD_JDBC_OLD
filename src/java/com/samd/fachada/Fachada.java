@@ -64,6 +64,11 @@ public class Fachada {
         UsuarioDao usuarioDao = new UsuarioDaoImp();
         return usuarioDao.cargarComboTipoUsuario();
     }
+    
+    public Usuario validarUsuario (Usuario usuario) throws PersistenciaExcepcion{
+        UsuarioDao usuarioDao = new UsuarioDaoImp();
+        return usuarioDao.validarUsuario(usuario);               
+    }
 
 //    *******************************Fin de Administracion de Usuarios**************************************
 //    *******************************Administración de Temas **********************************************

@@ -1,8 +1,8 @@
-
 package com.samd.beans;
 
 import com.samd.dao.UsuarioDao;
 import com.samd.dao.UsuarioDaoImp;
+import com.samd.excepciones.PersistenciaExcepcion;
 import com.samd.fachada.Fachada;
 import com.samd.modelo.Usuario;
 import javax.faces.bean.ManagedBean;
@@ -14,12 +14,11 @@ import org.apache.commons.codec.digest.DigestUtils;
 @SessionScoped
 public class LoginBean {
 
-    Usuario usuario;
+    Usuario usuario = new Usuario();
     private Fachada fachada = Fachada.getInstancia();
 
     public LoginBean() {
-        
-       this.usuario = new Usuario();
+
     }
 
     public Usuario getUsuario() {
@@ -30,17 +29,12 @@ public class LoginBean {
         this.usuario = usuario;
     }
 
-    public String validarDatosUsuario() throws Exception {
+    public String validarDatosUsuario() throws PersistenciaExcepcion {
 
 //        String encriptar;
         String url = null;
-       // encriptar = DigestUtils.md5Hex(this.usuario.getContrasenia());
-        UsuarioDao usuarioDao = new UsuarioDaoImp();
-        Usuario us;
-
-        //this.usuario.setContrasenia(encriptar);
-        
-        us = usuarioDao.validarUsuario(usuario);
+        // encriptar = DigestUtils.md5Hex(this.usuario.getContrasenia());
+        Usuario us = fachada.validarUsuario(usuario);
 
         if (us != null) {
             //Si el usuario exite, lo guardo en sesion
@@ -48,15 +42,15 @@ public class LoginBean {
 
             switch (us.getIdTipo()) {
                 case 1:
-                    url = "/Views/admoin/adminusuarios.xhtml";
+                    url = "/Views/admin/inicioadmin.xhtml";
                     break;
 
                 case 2:
-                    url = "/Views/docente/docente.xhtml";
+                    url = "/Views/docente/iniciodocente.xhtml";
                     break;
 
                 case 3:
-                    url = "/Views/alumno/alumno.xhtml";
+                    url = "/Views/alumno/inicioalumno.xhtml";
                     break;
 
             }

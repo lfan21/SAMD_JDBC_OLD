@@ -36,7 +36,7 @@
                             <f:selectItems value="#{adminUsuariosBean.listaTipoUsuario}" />
                         </h:selectOneMenu>
 
-                        <p:commandButton value="Ingresar Usuario" actionListener="#{adminUsuariosBean.ingresarUsuario()}" />
+                        <p:commandButton value="Ingresar Usuario" actionListener="#{adminUsuariosBean.ingresarUsuario()}" update="frmIngresar"/>
                         <p:commandButton  value="Limpiar" type="reset" />
                     </h:panelGrid>
 

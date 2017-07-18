@@ -84,7 +84,7 @@ public class AdminUsuariosBean {
     public void ingresarUsuario() throws UsuarioExcepcion, PersistenciaExcepcion {
 
         if (fachada.existeUsuario(usuario)) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "El usuario ya existe", "Error"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El usuario ya existe", "Error"));
         } else {
             this.usuario.setIdTipo(idTipoUsuario);
             fachada.ingresarUsuario(usuario);
@@ -100,5 +100,6 @@ public class AdminUsuariosBean {
     public void modificarUsuario() throws Exception {
         fachada.modificarUsuario(usuario);
     }
+   
 
 }

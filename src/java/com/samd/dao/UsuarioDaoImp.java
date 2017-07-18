@@ -168,10 +168,14 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
                 us.setApellido(rs.getString("apellido"));
                 us.setCedula(rs.getInt("cedula"));
                 us.setContrasenia(rs.getString("contrasenia"));
-                us.setIdTipo(rs.getInt("idTipo"));
+                us.setIdTipo(rs.getInt("TIPO_USUARIO_idTipo"));
                 us.setNroDocente(rs.getInt("nroDocente"));
                 us.setEstado(rs.getInt("estado"));
+                us.setCorreoElectronico(rs.getString("correoElectronico"));
             }
+            
+            rs.close();
+            ps.close();
 
         } catch (SQLException ex) {
             throw new PersistenciaExcepcion("Ha ocurrido un error al intentar validar el usuario");
