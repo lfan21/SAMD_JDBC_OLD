@@ -14,14 +14,16 @@
 
 
                 <h:form>         
+                    
+                    <p:growl id="mensajeTema" autoUpdate="true" showDetail="true"/>
                     <h:panelGrid columns="2" cellpadding="5">
 
                         <h3>Nombre:</h3>
                      
-                        <p:inputText id="nombreTema" value="#{temaBean.tema.nombre}"/>
+                        <p:inputText id="nombreTema" value="#{temaBean.tema.nombre}" required="true"/>
 
                         <h3>Descripción: </h3>
-                        <p:inputTextarea id="descripcion" rows="4" cols="40" value="#{temaBean.tema.descripcion}"/>
+                        <p:inputTextarea id="descripcion" rows="4" cols="40" value="#{temaBean.tema.descripcion}" required="true"/>
 
                         <h:panelGrid columns="2" style="margin-top: 10px">
 

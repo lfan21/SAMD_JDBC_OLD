@@ -69,6 +69,12 @@ public class Fachada {
         UsuarioDao usuarioDao = new UsuarioDaoImp();
         return usuarioDao.validarUsuario(usuario);               
     }
+    
+    public void cambiarContrasenia (Usuario usuario) throws PersistenciaExcepcion{
+        UsuarioDao usuarioDao = new UsuarioDaoImp();
+        usuarioDao.cambiarContrasenia(usuario);
+        
+    }
 
 //    *******************************Fin de Administracion de Usuarios**************************************
 //    *******************************Administración de Temas **********************************************

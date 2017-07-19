@@ -5,6 +5,7 @@ import com.samd.excepciones.UsuarioExcepcion;
 import com.samd.fachada.Fachada;
 import com.samd.modelo.TipoUsuario;
 import com.samd.modelo.Usuario;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -89,9 +90,11 @@ public class AdminUsuariosBean {
             this.usuario.setIdTipo(idTipoUsuario);
             fachada.ingresarUsuario(usuario);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario ingresado correctamente", "Exito"));
-
         }
+
     }
+
+    
 
     public void eliminarUsuario() throws Exception {
         fachada.eliminarUsuario(usuario);
@@ -100,6 +103,9 @@ public class AdminUsuariosBean {
     public void modificarUsuario() throws Exception {
         fachada.modificarUsuario(usuario);
     }
-   
+
+    public void cambiarContrasenia() throws PersistenciaExcepcion {
+        fachada.cambiarContrasenia(this.usuario);
+    }
 
 }

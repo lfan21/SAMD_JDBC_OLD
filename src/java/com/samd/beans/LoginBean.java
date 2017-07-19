@@ -5,6 +5,7 @@ import com.samd.dao.UsuarioDaoImp;
 import com.samd.excepciones.PersistenciaExcepcion;
 import com.samd.fachada.Fachada;
 import com.samd.modelo.Usuario;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -15,7 +16,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 public class LoginBean {
 
     Usuario usuario = new Usuario();
-    private Fachada fachada = Fachada.getInstancia();
+    private final Fachada fachada = Fachada.getInstancia();
 
     public LoginBean() {
 
@@ -44,19 +45,16 @@ public class LoginBean {
                 case 1:
                     url = "/Views/admin/inicioadmin.xhtml";
                     break;
-
                 case 2:
                     url = "/Views/docente/iniciodocente.xhtml";
                     break;
-
                 case 3:
                     url = "/Views/alumno/inicioalumno.xhtml";
                     break;
-
             }
         } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario y/o Contraseña incorrectos", "Vuelva a intentar"));
             url = "/Views/login.xhtml";
-
         }
 
         return url;

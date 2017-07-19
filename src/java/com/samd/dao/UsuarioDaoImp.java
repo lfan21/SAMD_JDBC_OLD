@@ -173,7 +173,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
                 us.setEstado(rs.getInt("estado"));
                 us.setCorreoElectronico(rs.getString("correoElectronico"));
             }
-            
+
             rs.close();
             ps.close();
 
@@ -252,5 +252,32 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
 
         return existe;
 
+    }
+
+    @Override
+    public void cambiarContrasenia(Usuario usuario) throws PersistenciaExcepcion {
+
+        String consulta;
+        PreparedStatement ps;
+                
+
+        try {
+            this.conectar();
+            consulta = "UPDATE USUARIOS SET contrasenia = ? WHERE cedula = ?";
+            
+            ps = this.getConn().prepareCall(consulta);
+            
+            ps.setString(1, usuario.getContrasenia());
+            ps.setInt(2, usuario.getCedula());
+            
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+
+            throw new PersistenciaExcepcion("Ha ocurrido un error al modificar la contraseña");
+
+        }finally {
+            this.cerrarConexion();
+        }
     }
 }
