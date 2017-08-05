@@ -20,8 +20,6 @@ public interface UsuarioDao {
     
     public Usuario existeUsuario(Usuario usuario) throws PersistenciaExcepcion;
     
-    public void cambiarContrasenia (Usuario usuario) throws PersistenciaExcepcion;
+    public void cambiarContrasenia (Usuario usuario) throws PersistenciaExcepcion; 
     
-   
-
 }

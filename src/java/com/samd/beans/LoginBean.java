@@ -1,7 +1,5 @@
 package com.samd.beans;
 
-import com.samd.dao.UsuarioDao;
-import com.samd.dao.UsuarioDaoImp;
 import com.samd.excepciones.PersistenciaExcepcion;
 import com.samd.fachada.Fachada;
 import com.samd.modelo.Usuario;

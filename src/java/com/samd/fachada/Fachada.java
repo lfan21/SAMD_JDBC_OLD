@@ -82,6 +82,8 @@ public class Fachada {
         usuarioDao.cambiarContrasenia(usuario);
 
     }
+    
+    
 
 //    *******************************Fin de Administracion de Usuarios**************************************
 //    *******************************Administración de Temas **********************************************
