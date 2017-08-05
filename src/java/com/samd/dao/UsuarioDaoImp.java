@@ -224,8 +224,8 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
     }
 
     @Override
-    public boolean existeUsuario(Usuario usuario) throws PersistenciaExcepcion {
-
+    public Usuario existeUsuario(Usuario usuario) throws PersistenciaExcepcion {
+        Usuario us = null;
         String consulta;
         boolean existe = false;
         PreparedStatement ps;
@@ -238,8 +238,9 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
             ps.setInt(1, usuario.getCedula());
             rs = ps.executeQuery();
 
-            if (rs.next()) {
-                existe = true;
+            while (rs.next()) {       
+                
+                
             }
 
         } catch (SQLException ex) {
@@ -250,7 +251,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
             this.cerrarConexion();
         }
 
-        return existe;
+        return us;
 
     }
 
@@ -259,25 +260,25 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
 
         String consulta;
         PreparedStatement ps;
-                
 
         try {
             this.conectar();
             consulta = "UPDATE USUARIOS SET contrasenia = ? WHERE cedula = ?";
-            
+
             ps = this.getConn().prepareCall(consulta);
-            
+
             ps.setString(1, usuario.getContrasenia());
             ps.setInt(2, usuario.getCedula());
-            
+
             ps.executeUpdate();
-            
+
         } catch (SQLException e) {
 
             throw new PersistenciaExcepcion("Ha ocurrido un error al modificar la contraseña");
 
-        }finally {
+        } finally {
             this.cerrarConexion();
         }
     }
+
 }

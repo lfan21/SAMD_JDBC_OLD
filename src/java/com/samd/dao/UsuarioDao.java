@@ -18,8 +18,10 @@ public interface UsuarioDao {
 
     public List cargarComboTipoUsuario() throws PersistenciaExcepcion;
     
-    public boolean existeUsuario(Usuario usuario) throws PersistenciaExcepcion;
+    public Usuario existeUsuario(Usuario usuario) throws PersistenciaExcepcion;
     
     public void cambiarContrasenia (Usuario usuario) throws PersistenciaExcepcion;
     
+   
+
 }
