@@ -7,38 +7,42 @@
 
     <body>
 
-        <ui:composition template="./../../Templates/administradorTemplate.xhtml">
+        <ui:composition template="./../../Templates/plantillaAdministrador.xhtml">
 
             <ui:define name="content">
 
-                <h:form id="frmCambiarContrasenia"> 
-                    
-                    <p:growl id="mensajes" autoUpdate="true"  showDetail="true"/>
-                    
-                    <h:panelGrid columns="2" cellpadding="5">
+                <div id="contenedor">
 
-                        <p:outputLabel for="contraseniaAnterior" value="Ingrese contraseña anterior" />
-                        <p:password id="contraseniaAnterior" value="" required="true" />
+                    <h:form id="frmCambiarContrasenia"> 
 
-                        <p:outputLabel for="nuevaContrasenia" value="Ingrese nueva contraseña" />
-                        <p:password id="nuevaContrasenia" match="confContrasenia"  validatorMessage="No coinciden las contraseñas" value="" required="true" feedback="true" inline="true" promptLabel="Nueva Contraseña" weakLabel="Débil" goodLabel="Normal" strongLabel="Fuerte"/>
+                        <p:growl id="mensajes" autoUpdate="true"  showDetail="true"/>
 
-                        <p:outputLabel for="confContrasenia" value="Confirmar nueva contraseña" />
-                        <p:password id="confContrasenia" value=""  required="true" feedback="true" inline="true" promptLabel="Nueva Contraseña" weakLabel="Débil" goodLabel="Normal" strongLabel="Fuerte"/>
+                        <h:panelGrid columns="2" cellpadding="5">
 
-                        <p:commandButton value="Cambiar Contraseña" update="frmCambiarContrasenia"/>
+                            <p:outputLabel for="contraseniaAnterior" value="Ingrese contraseña anterior" />
+                            <p:password id="contraseniaAnterior" value="" required="true" />
 
-                    </h:panelGrid>
+                            <p:outputLabel for="nuevaContrasenia" value="Ingrese nueva contraseña" />
+                            <p:password id="nuevaContrasenia" match="confContrasenia"  validatorMessage="No coinciden las contraseñas" value="" required="true" feedback="true" inline="true" promptLabel="Nueva Contraseña" weakLabel="Débil" goodLabel="Normal" strongLabel="Fuerte"/>
 
-                </h:form> 
+                            <p:outputLabel for="confContrasenia" value="Confirmar nueva contraseña" />
+                            <p:password id="confContrasenia" value=""  required="true" feedback="true" inline="true" promptLabel="Nueva Contraseña" weakLabel="Débil" goodLabel="Normal" strongLabel="Fuerte"/>
 
-                <h:form id="frmRegresar">
+                            <p:commandButton value="Cambiar Contraseña" update="frmCambiarContrasenia"/>
 
-                    <h:panelGrid columns="2">
-                        <p:commandButton value="Regresar" />
-                    </h:panelGrid>
+                        </h:panelGrid>
 
-                </h:form>
+                    </h:form> 
+
+                    <h:form id="frmRegresar">
+
+                        <h:panelGrid columns="2">
+                            <p:commandButton value="Regresar" />
+                        </h:panelGrid>
+
+                    </h:form>
+
+                </div>
 
 
             </ui:define>

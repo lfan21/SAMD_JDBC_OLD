@@ -8,17 +8,14 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
-        <title>SAMD - .::Administrador::. </title>
+        <link rel="stylesheet" type="text/css" href="../../resources/css/estilo.css" />
+        <title>Facelets Template</title>
     </h:head>
 
-    <h:body id="inicioAdmin">
+    <h:body>
 
-        <div id="top">
+        <div id="top" class="top">
             <ui:insert name="top">
-
-
                 <h:form>  
                     <p:growl id="messages"/>
 
@@ -28,8 +25,8 @@
                             <p:menuitem value="Ingresar Usuario" icon="ui-icon-plus" url="ingresarUsuario.xhtml" />
                             <p:menuitem value="Buscar Usuario" icon="ui-icon-plus" url="buscarUsuario.xhtml" />
                         </p:submenu>
-                        
-                        
+
+
                         <p:submenu label="Administración de Contenido" icon="ui-icon-pencil">
                             <p:submenu label="Temas">
                                 <p:menuitem value="Ingresar Tema" icon="ui-icon-plus" url="/Views/admin/ingresarTema.xhtml" />
@@ -40,7 +37,7 @@
                                 <p:menuitem value="Ingresar Teórico" icon="ui-icon-plus" url="ingresarTeorico.xhtml" />
                                 <p:menuitem value="Modificar Teórico" url="buscarTeorico.xhtml" icon="ui-icon-pencil"/>           
                             </p:submenu>
-                            
+
                             <p:submenu label="Preguntas">
                                 <p:menuitem value="Ingresar Preguntas" icon="ui-icon-plus" url="ingresarPregunta.xhtml" />
                                 <p:menuitem value="Gestionar Preguntas" icon="ui-icon-minusthick" url="buscarPregunta.xhtml" />
@@ -66,11 +63,6 @@
 
         <div id="content" class="center_content">
             <ui:insert name="content">Content</ui:insert>
-            
-        </div>
-
-        <div id="bottom">
-            <ui:insert name="bottom">Bottom</ui:insert>
         </div>
 
     </h:body>

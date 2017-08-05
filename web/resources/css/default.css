@@ -17,34 +17,13 @@ h1 {
 }
 
 a:link, a:visited {
-    color: #045491;
-    font-weight : bold;
-    text-decoration: none;
+  color: #045491;
+  font-weight : bold;
+  text-decoration: none;
 }
 
 a:link:hover, a:visited:hover  {
-    color: #045491;
-    font-weight : bold;
-    text-decoration : underline;
+  color: #045491;
+  font-weight : bold;
+  text-decoration : underline;
 }
-
-#contenedor{
-    position: absolute;
-    top: 500px;
-    left: 300px;     
-}
-
-#iniciarSesion{
-    background-image: url(../images/samdlogo.png); 
-    background-size: 40%;
-    background-position: left;
-    background-repeat: repeat;
-}
-
-.contenedoradmin{
-
-    width: 600px;
-    height: 800px;      
-}
-
-

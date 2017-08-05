@@ -8,37 +8,41 @@
 
     <body>
 
-        <ui:composition template="./../../Templates/administradorTemplate.xhtml">
+        <ui:composition template="./../../Templates/plantillaAdministrador.xhtml">
 
             <ui:define name="content">
-                <h:form>
 
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputText value="Seleccione Tema:" />           
-                        <h:selectOneMenu value="#{teoricoBean.teorico.idTema}" required="true">
-                            <f:selectItem itemLabel="-- Seleccione Tema --" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{temaBean.listaComboTipoTema}" />
-                        </h:selectOneMenu>
-                    </h:panelGrid>          
+                <div id="contenedor">
+                    <h:form>
 
-                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="Seleccione Tema:" />           
+                            <h:selectOneMenu value="#{teoricoBean.teorico.idTema}" required="true">
+                                <f:selectItem itemLabel="-- Seleccione Tema --" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{temaBean.listaComboTipoTema}" />
+                            </h:selectOneMenu>
+                        </h:panelGrid>          
 
-                        <p:outputLabel for="tituloTeorico" value="Titulo de Teorico" />
-                        <p:inputText id="tituloTeorico" value="#{teoricoBean.teorico.titulo}" required="true"/>
+                        <h:panelGrid columns="2" cellpadding="5">
 
-                        <p>Escriba contenido del Teorico: </p>
-                        <p:inputTextarea rows="4" cols="40" value="#{teoricoBean.teorico.contenido}" required="true" />
+                            <p:outputLabel for="tituloTeorico" value="Titulo de Teorico" />
+                            <p:inputText id="tituloTeorico" value="#{teoricoBean.teorico.titulo}" required="true"/>
 
-                        <h:panelGrid columns="2">
+                            <p>Escriba contenido del Teorico: </p>
+                            <p:inputTextarea rows="4" cols="40" value="#{teoricoBean.teorico.contenido}" required="true" />
 
-                            <p:commandButton value="Guardar" actionListener="#{teoricoBean.ingresarTeorico()}" icon="ui-icon-disk" />
-                            <p:commandButton value="Limpiar Campos" type="reset" />
+                            <h:panelGrid columns="2">
+
+                                <p:commandButton value="Guardar" actionListener="#{teoricoBean.ingresarTeorico()}" icon="ui-icon-disk" />
+                                <p:commandButton value="Limpiar Campos" type="reset" />
+
+                            </h:panelGrid>
 
                         </h:panelGrid>
 
-                    </h:panelGrid>
+                    </h:form>
 
-                </h:form>
+                </div>
             </ui:define>
 
         </ui:composition>

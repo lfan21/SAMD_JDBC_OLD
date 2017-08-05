@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link href="resources/css/estilo.css" rel="stylesheet" type="text/css" />
+        <title>SAMD - Olvido de Contraseña</title>
+    </h:head>
+    <h:body>
+
+        <div id="contenedor">
+
+            <h:form id="frmOlvidoContrasenia" >
+
+                <p:growl id="msjOlvidoContrasenia" autoUpdate="true" showDetail="true" />
+
+                <h:panelGrid columns="2" style="margin: 0 auto "> 
+
+                    <p:outputLabel for="usuario" value="Usuario: " />            
+                    <p:inputText id="usuario" required="true"/> 
+
+                    <p:outputLabel  value="Correo: " />            
+                    <p:inputText    required="true"/>
+
+                    <p:outputLabel  value="Repetir Correo: " />            
+                    <p:inputText   required="true"/>
+
+
+                    <p:commandButton  id="ingresar" value="Resetear" /> 
+                     <p:commandButton  id="regresar" value="Volver" /> 
+                </h:panelGrid>
+
+
+
+            </h:form>
+
+
+
+        </div>
+
+
+    </h:body>
+</html>
+

@@ -30,6 +30,7 @@
 
 .center_content {
     position: relative;
+    background-color: #dddddd;
     padding: 5px;
 }
 
@@ -56,3 +57,5 @@
   font-weight : bold;
   text-decoration : underline;
 }
+
+

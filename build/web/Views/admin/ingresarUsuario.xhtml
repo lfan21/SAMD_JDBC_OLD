@@ -8,39 +8,45 @@
 
     <body>
 
-        <ui:composition template="./../../Templates/administradorTemplate.xhtml">
+        <ui:composition template="./../../Templates/plantillaAdministrador.xhtml">
 
             <ui:define name="content">
-                <p:growl autoUpdate="true" id="mensajes" />
-                <h:form id="frmIngresar" >
 
-                    <h1>Bienvenido: </h1>
+                <div id="contenedor">
 
-                    <h:panelGrid columns="2" cellpadding="5">
+                    <p:growl autoUpdate="true" id="mensajes" />
+                    <h:form id="frmIngresar" >
 
-                        <p:outputLabel value="Cedula:" />
-                        <p:inputMask id="cedula" value="#{adminUsuariosBean.usuario.cedula}" mask="99999999" required="true"/>
+                        <h1>Bienvenido: </h1>
 
-                        <p:outputLabel value="Nombre:" />
-                        <p:inputText  value="#{adminUsuariosBean.usuario.nombre}" required="true"/>
+                        <h:panelGrid columns="2" cellpadding="5">
 
-                        <p:outputLabel value="Apellido:" />
-                        <p:inputText  value="#{adminUsuariosBean.usuario.apellido}" required="true" />
+                            <p:outputLabel value="Cedula:" />
+                            <p:inputMask id="cedula" value="#{adminUsuariosBean.usuario.cedula}" mask="99999999" required="true"/>
 
-                        <p:outputLabel value="Correo Electronico:" />
-                        <p:inputText  value="#{adminUsuariosBean.usuario.correoElectronico}" required="true" />
+                            <p:outputLabel value="Nombre:" />
+                            <p:inputText  value="#{adminUsuariosBean.usuario.nombre}" required="true"/>
 
-                        <h:outputLabel  value="Tipo Usuario: *" />
-                        <h:selectOneMenu  value="#{adminUsuariosBean.idTipoUsuario}" required="true">
-                            <f:selectItem itemLabel="-- Seleccione Tipo Usuario --" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{adminUsuariosBean.listaTipoUsuario}" />
-                        </h:selectOneMenu>
+                            <p:outputLabel value="Apellido:" />
+                            <p:inputText  value="#{adminUsuariosBean.usuario.apellido}" required="true" />
 
-                        <p:commandButton value="Ingresar Usuario" actionListener="#{adminUsuariosBean.ingresarUsuario()}" update="frmIngresar"/>
-                        <p:commandButton  value="Limpiar" type="reset" />
-                    </h:panelGrid>
+                            <p:outputLabel value="Correo Electronico:" />
+                            <p:inputText  value="#{adminUsuariosBean.usuario.correoElectronico}" required="true" />
 
-                </h:form>
+                            <h:outputLabel  value="Tipo Usuario: *" />
+                            <h:selectOneMenu  value="#{adminUsuariosBean.idTipoUsuario}" required="true">
+                                <f:selectItem itemLabel="-- Seleccione Tipo Usuario --" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{adminUsuariosBean.listaTipoUsuario}" />
+                            </h:selectOneMenu>
+
+                            <p:commandButton value="Ingresar Usuario" actionListener="#{adminUsuariosBean.ingresarUsuario()}" update="frmIngresar"/>
+                            <p:commandButton  value="Limpiar" type="reset" />
+                        </h:panelGrid>
+
+                    </h:form>
+
+                </div>
+                
             </ui:define>
 
         </ui:composition>

@@ -8,33 +8,35 @@
 
     <body>
 
-        <ui:composition template="./../../Templates/administradorTemplate.xhtml">
+        <ui:composition template="./../../Templates/plantillaAdministrador.xhtml">
 
             <ui:define name="content">
 
+                <div id="contenedor">
+                    <h:form>         
 
-                <h:form>         
-                    
-                    <p:growl id="mensajeTema" autoUpdate="true" showDetail="true"/>
-                    <h:panelGrid columns="2" cellpadding="5">
+                        <p:growl id="mensajeTema" autoUpdate="true" showDetail="true"/>
+                        <h:panelGrid columns="2" cellpadding="5">
 
-                        <h3>Nombre:</h3>
-                     
-                        <p:inputText id="nombreTema" value="#{temaBean.tema.nombre}" required="true"/>
+                            <h3>Nombre:</h3>
 
-                        <h3>Descripción: </h3>
-                        <p:inputTextarea id="descripcion" rows="4" cols="40" value="#{temaBean.tema.descripcion}" required="true"/>
+                            <p:inputText id="nombreTema" value="#{temaBean.tema.nombre}" required="true"/>
 
-                        <h:panelGrid columns="2" style="margin-top: 10px">
+                            <h3>Descripción: </h3>
+                            <p:inputTextarea id="descripcion" rows="4" cols="40" value="#{temaBean.tema.descripcion}" required="true"/>
 
-                            <p:commandButton value="Guardar" actionListener="#{temaBean.ingresartTema()}" />
-                            <p:commandButton value="Limpiar Campos" type="reset" />
+                            <h:panelGrid columns="2" style="margin-top: 10px">
+
+                                <p:commandButton value="Guardar" actionListener="#{temaBean.ingresartTema()}" />
+                                <p:commandButton value="Limpiar Campos" type="reset" />
+
+                            </h:panelGrid>
 
                         </h:panelGrid>
 
-                    </h:panelGrid>
+                    </h:form>
 
-                </h:form>
+                </div>
 
             </ui:define>
 

@@ -8,92 +8,94 @@
 
     <body>
 
-        <ui:composition template="./../../Templates/administradorTemplate.xhtml">
+        <ui:composition template="./../../Templates/plantillaAdministrador.xhtml">
 
             <ui:define name="content">
 
-                <h:form id="frmTemas">
+                <div id="contenedor">
 
-                    <p:dataTable id="dt" var="tema" value="#{temaBean.listaTemas}" emptyMessage="No hay registros"
-                                 paginator="true" rows="10" paginatorPosition="top" paginatorTemplate="{CurrentPageReport}
-                                 {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="10" widgetVar="dtTema" filteredValue="#{temaBean.temaFiltrado}" >
+                    <h:form id="frmTemas">
 
-                        <f:facet name="header">
-                            <p:outputPanel>
-                                <h:outputText value="Buscar " />
-                                <p:inputText id="globalFilter" onkeyup="PF('dtTema').filter()" style="width:150px" />
-                            </p:outputPanel>
-                        </f:facet>
+                        <p:dataTable id="dt" var="tema" value="#{temaBean.listaTemas}" emptyMessage="No hay registros"
+                                     paginator="true" rows="10" paginatorPosition="top" paginatorTemplate="{CurrentPageReport}
+                                     {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="10" widgetVar="dtTema" filteredValue="#{temaBean.temaFiltrado}" >
 
-                        <p:column headerText="Tema" filterBy="#{tema.nombre}" filterMatchMode="contains">             
-                            <h:outputLabel value="#{tema.nombre}"/>
-                        </p:column>
+                            <f:facet name="header">
+                                <p:outputPanel>
+                                    <h:outputText value="Buscar " />
+                                    <p:inputText id="globalFilter" onkeyup="PF('dtTema').filter()" style="width:150px" />
+                                </p:outputPanel>
+                            </f:facet>
 
-                        <p:column headerText="Descripción" filterBy="#{tema.descripcion}" filterMatchMode="contains">             
-                            <h:outputLabel value="#{tema.descripcion}"/>
-                        </p:column>
+                            <p:column headerText="Tema" filterBy="#{tema.nombre}" filterMatchMode="contains">             
+                                <h:outputLabel value="#{tema.nombre}"/>
+                            </p:column>
 
-                        <p:column headerText="Modificar" >
+                            <p:column headerText="Descripción" filterBy="#{tema.descripcion}" filterMatchMode="contains">             
+                                <h:outputLabel value="#{tema.descripcion}"/>
+                            </p:column>
 
-                            <p:commandButton value="Modificar" onclick="PF('dlgModificar').show();" icon="ui-icon-pencil" update=":frmModificar">
-                                <f:setPropertyActionListener target="#{temaBean.tema}" value="#{tema}"/>
-                            </p:commandButton>
+                            <p:column headerText="Modificar" >
 
-                        </p:column>
+                                <p:commandButton value="Modificar" onclick="PF('dlgModificar').show();" icon="ui-icon-pencil" update=":frmModificar">
+                                    <f:setPropertyActionListener target="#{temaBean.tema}" value="#{tema}"/>
+                                </p:commandButton>
 
-                        <p:column headerText="Eliminar" > 
+                            </p:column>
 
-                            <p:commandButton value="Eliminar" onclick ="PF('dlgEliminar').show()"  icon="ui-icon-close">
-                                <f:setPropertyActionListener target="#{temaBean.tema}" value="#{tema}"/>
-                            </p:commandButton>
+                            <p:column headerText="Eliminar" > 
 
-                        </p:column>
+                                <p:commandButton value="Eliminar" onclick ="PF('dlgEliminar').show()"  icon="ui-icon-close">
+                                    <f:setPropertyActionListener target="#{temaBean.tema}" value="#{tema}"/>
+                                </p:commandButton>
+
+                            </p:column>
 
 
 
-                    </p:dataTable>
-
-                </h:form>
-
-                <p:dialog id="dlg2" header="Eliminar Tema" showEffect="explode" hideEffect="explode"
-                          widgetVar="dlgEliminar" modal="true" resizable="false" minWidth="200"  dynamic="true">
-
-                    <h:form id="frmEliminar">
-
-                        <h:outputText value="Desea eliminar el Tema ?"/>
-                        <p:commandButton value="SI" actionListener="#{temaBean.eliminarTema()}" update=":frmTemas" onclick="PF('dlgEliminar').hide();"/>
-                        <p:commandButton value="NO" onclick="PF('dlgEliminar').hide();" />
+                        </p:dataTable>
 
                     </h:form>
 
-                </p:dialog>
+                    <p:dialog id="dlg2" header="Eliminar Tema" showEffect="explode" hideEffect="explode"
+                              widgetVar="dlgEliminar" modal="true" resizable="false" minWidth="200"  dynamic="true">
+
+                        <h:form id="frmEliminar">
+
+                            <h:outputText value="Desea eliminar el Tema ?"/>
+                            <p:commandButton value="SI" actionListener="#{temaBean.eliminarTema()}" update=":frmTemas" onclick="PF('dlgEliminar').hide();"/>
+                            <p:commandButton value="NO" onclick="PF('dlgEliminar').hide();" />
+
+                        </h:form>
+
+                    </p:dialog>
 
 
 
-                <p:dialog id="dlg" header="Modificar Datos" showEffect="explode" hideEffect="explode"
-                          widgetVar="dlgModificar" modal="true" resizable="false" minWidth="200" >
+                    <p:dialog id="dlg" header="Modificar Datos" showEffect="explode" hideEffect="explode"
+                              widgetVar="dlgModificar" modal="true" resizable="false" minWidth="200" >
 
-                    <h:form id="frmModificar">
+                        <h:form id="frmModificar">
 
-                        <p:panelGrid columns="2">
+                            <p:panelGrid columns="2">
 
-                            <p:outputLabel value="Nombre: " />
-                            <p:inputText value="#{temaBean.tema.nombre}" />
+                                <p:outputLabel value="Nombre: " />
+                                <p:inputText value="#{temaBean.tema.nombre}" />
 
-                            <p:outputLabel value="Descripción: "/>
-                            <p:inputText value="#{temaBean.tema.descripcion}" />
+                                <p:outputLabel value="Descripción: "/>
+                                <p:inputText value="#{temaBean.tema.descripcion}" />
 
-                        </p:panelGrid>
+                            </p:panelGrid>
 
-                        <p:commandButton value="Modificar Datos" actionListener="#{temaBean.modificarTema()}"
-                                         update=":frmTemas" onclick="PF('dlgModificar').hide();" />
-                    </h:form>
+                            <p:commandButton value="Modificar Datos" actionListener="#{temaBean.modificarTema()}"
+                                             update=":frmTemas" onclick="PF('dlgModificar').hide();" />
+                        </h:form>
 
-                </p:dialog>
+                    </p:dialog>
 
 
-
+                </div>
             </ui:define>
 
         </ui:composition>

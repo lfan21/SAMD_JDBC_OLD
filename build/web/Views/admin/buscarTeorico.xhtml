@@ -8,105 +8,105 @@
 
     <body>
 
-        <ui:composition template="./../../Templates/administradorTemplate.xhtml">
+        <ui:composition template="./../../Templates/plantillaAdministrador.xhtml">
 
             <ui:define name="content">
-                <h:form id="frmTeoricos">
 
-                    <p:dataTable id="dt" var="teorico" value="#{teoricoBean.listaTeoricos}" emptyMessage="No hay registros"
-                                 paginator="true" rows="10" paginatorPosition="top" paginatorTemplate="{CurrentPageReport}
-                                 {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="10" widgetVar="dtTeorico" filteredValue="#{teoricoBean.teoricoFiltrado}" >
+                <div id="contenedor" >
 
-                        <f:facet name="header">
-                            <p:outputPanel>
-                                <h:outputText value="Buscar " />
-                                <p:inputText id="globalFilter" onkeyup="PF('dtTeorico').filter()" style="width:150px" />
-                            </p:outputPanel>
-                        </f:facet>
+                    <h:form id="frmTeoricos">
 
-                        <p:column headerText="Titulo Teórico" filterBy="#{teorico.titulo}" filterMatchMode="contains">             
-                            <h:outputLabel value="#{teorico.titulo}"/>
-                        </p:column>
+                        <p:dataTable id="dt" var="teorico" value="#{teoricoBean.listaTeoricos}" emptyMessage="No hay registros"
+                                     paginator="true" rows="10" paginatorPosition="top" paginatorTemplate="{CurrentPageReport}
+                                     {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="10" widgetVar="dtTeorico" filteredValue="#{teoricoBean.teoricoFiltrado}" >
 
-                        <p:column headerText="Contenido" filterBy="#{teorico.contenido}" filterMatchMode="contains">             
-                            <h:outputLabel value="#{teorico.contenido}"/>
-                        </p:column>
+                            <f:facet name="header">
+                                <p:outputPanel>
+                                    <h:outputText value="Buscar " />
+                                    <p:inputText id="globalFilter" onkeyup="PF('dtTeorico').filter()" style="width:150px" />
+                                </p:outputPanel>
+                            </f:facet>
 
-                        <p:column headerText="Tema" filterBy="#{teorico.idTema}" filterMatchMode="contains">             
-                            <h:outputLabel value="#{teorico.idTema}" />
-                        </p:column>
+                            <p:column headerText="Titulo Teórico" filterBy="#{teorico.titulo}" filterMatchMode="contains">             
+                                <h:outputLabel value="#{teorico.titulo}"/>
+                            </p:column>
 
-                        <p:column headerText="Eliminar" > 
+                            <p:column headerText="Contenido" filterBy="#{teorico.contenido}" filterMatchMode="contains">             
+                                <h:outputLabel value="#{teorico.contenido}"/>
+                            </p:column>
 
-                            <p:commandButton value="Eliminar" onclick ="PF('dlgEliminar').show()" icon="ui-icon-close">
-                                <f:setPropertyActionListener target="#{teoricoBean.teorico}" value="#{teorico}"/>
-                            </p:commandButton>
+                            <p:column headerText="Tema" filterBy="#{teorico.idTema}" filterMatchMode="contains">             
+                                <h:outputLabel value="#{teorico.idTema}" />
+                            </p:column>
 
-                        </p:column>
+                            <p:column headerText="Eliminar" > 
 
-                        <p:column headerText="Modificar" >
+                                <p:commandButton value="Eliminar" onclick ="PF('dlgEliminar').show()" icon="ui-icon-close">
+                                    <f:setPropertyActionListener target="#{teoricoBean.teorico}" value="#{teorico}"/>
+                                </p:commandButton>
 
-                            <p:commandButton value="Modificar" onclick="PF('dlgModificar').show();" icon="ui-icon-pencil" update=":frmModificar">
+                            </p:column>
 
-                                <f:setPropertyActionListener target="#{teoricoBean.teorico}" value="#{teorico}"/>
+                            <p:column headerText="Modificar" >
 
-                            </p:commandButton>
+                                <p:commandButton value="Modificar" onclick="PF('dlgModificar').show();" icon="ui-icon-pencil" update=":frmModificar">
 
+                                    <f:setPropertyActionListener target="#{teoricoBean.teorico}" value="#{teorico}"/>
 
-                        </p:column>
-
-
-                    </p:dataTable>
-
-                </h:form>
+                                </p:commandButton>
 
 
-                <p:dialog id="dlg" header="Modificar Datos" showEffect="explode" hideEffect="explode"
-                          widgetVar="dlgModificar" modal="true" resizable="false" minWidth="200" >
-
-                    <h:form id="frmModificar">
-
-                        <p:panelGrid columns="2">
-
-                            <p:outputLabel value="Título: "/>
-                            <p:inputText value="#{teoricoBean.teorico.titulo}"/>
-
-                            <p:outputLabel value="Contenido: "/>
-                            <p:inputText value="#{teoricoBean.teorico.contenido}"/>
-
-                            <p:outputLabel value="Tema: "/>
-                            <h:selectOneMenu  value="#{teoricoBean.teorico.idTema}" required="true">
-                                <f:selectItems value="#{temaBean.listaComboTipoTema}" />
-                            </h:selectOneMenu>
+                            </p:column>
 
 
-                        </p:panelGrid>
-
-                        <p:commandButton value="Modificar Datos" actionListener="#{teoricoBean.modificarTeorico()}"
-                                         update=":frmTeoricos" onclick="PF('dlgModificar').hide();"/>
-                    </h:form>
-
-                </p:dialog>
-
-
-                <p:dialog id="dlg2" header="Eliminar Teorico" showEffect="explode" hideEffect="explode"
-                          widgetVar="dlgEliminar" modal="true" resizable="false" minWidth="200"  dynamic="true">
-
-                    <h:form id="frmEliminar">
-
-                        <h:outputText value="Desea eliminar el Teórico? "/>
-                        <p:commandButton value="SI" actionListener="#{teoricoBean.eliminarTeorico()}" update=":frmTeoricos" onclick="PF('dlgEliminar').hide();"/>
-                        <p:commandButton value="NO" onclick="PF('dlgEliminar').hide();" />
+                        </p:dataTable>
 
                     </h:form>
-                </p:dialog>
 
 
+                    <p:dialog id="dlg" header="Modificar Datos" showEffect="explode" hideEffect="explode"
+                              widgetVar="dlgModificar" modal="true" resizable="false" minWidth="200" >
+
+                        <h:form id="frmModificar">
+
+                            <p:panelGrid columns="2">
+
+                                <p:outputLabel value="Título: "/>
+                                <p:inputText value="#{teoricoBean.teorico.titulo}"/>
+
+                                <p:outputLabel value="Contenido: "/>
+                                <p:inputText value="#{teoricoBean.teorico.contenido}"/>
+
+                                <p:outputLabel value="Tema: "/>
+                                <h:selectOneMenu  value="#{teoricoBean.teorico.idTema}" required="true">
+                                    <f:selectItems value="#{temaBean.listaComboTipoTema}" />
+                                </h:selectOneMenu>
 
 
+                            </p:panelGrid>
+
+                            <p:commandButton value="Modificar Datos" actionListener="#{teoricoBean.modificarTeorico()}"
+                                             update=":frmTeoricos" onclick="PF('dlgModificar').hide();"/>
+                        </h:form>
+
+                    </p:dialog>
 
 
+                    <p:dialog id="dlg2" header="Eliminar Teorico" showEffect="explode" hideEffect="explode"
+                              widgetVar="dlgEliminar" modal="true" resizable="false" minWidth="200"  dynamic="true">
+
+                        <h:form id="frmEliminar">
+
+                            <h:outputText value="Desea eliminar el Teórico? "/>
+                            <p:commandButton value="SI" actionListener="#{teoricoBean.eliminarTeorico()}" update=":frmTeoricos" onclick="PF('dlgEliminar').hide();"/>
+                            <p:commandButton value="NO" onclick="PF('dlgEliminar').hide();" />
+
+                        </h:form>
+                    </p:dialog>
+
+
+                </div>
 
             </ui:define>
 
