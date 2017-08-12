@@ -15,6 +15,8 @@ import com.samd.modelo.Tema;
 import com.samd.modelo.Teorico;
 import com.samd.modelo.TipoUsuario;
 import com.samd.modelo.Usuario;
+import com.samd.utiles.Correo;
+import com.samd.utiles.GeneradorDeContrasenia;
 import java.util.List;
 
 public class Fachada {
@@ -45,7 +47,7 @@ public class Fachada {
 
         if (usuarioDao.existeUsuario(usuario) != null) {
 
-            existe = true; 
+            existe = true;
         }
         return existe;
     }
@@ -82,10 +84,37 @@ public class Fachada {
         usuarioDao.cambiarContrasenia(usuario);
 
     }
-    
-    
 
-//    *******************************Fin de Administracion de Usuarios**************************************
+    public void olvidoContrasenia(Usuario usuario) throws PersistenciaExcepcion{
+
+        String mensaje;
+        UsuarioDao usuarioDao = new UsuarioDaoImp();     
+        
+        Usuario usuarioAux = new Usuario();
+        
+        usuarioAux= obtenerUsuario(usuario.getCedula());
+        
+        usuarioAux.setContrasenia(GeneradorDeContrasenia.getPassword());
+                
+        usuarioDao.cambiarContrasenia(usuarioAux);
+        
+        mensaje = "Se ha restablecido la contraseña del Usuario: " + usuarioAux.getCedula() + " a: " + usuarioAux.getContrasenia();
+        Correo correo = new Correo();
+        correo.setDestinatario(usuario.getCorreoElectronico());
+        correo.setAsunto("Cambio de Contraseña");
+        correo.setMensaje(mensaje);
+        
+        correo.enviarCorreo();
+
+    }
+    
+    public Usuario obtenerUsuario (int cedula) throws PersistenciaExcepcion{
+        
+        UsuarioDao usuarioDao = new UsuarioDaoImp();      
+        return usuarioDao.obtenerUsuario(cedula);
+    }
+
+//    *******************************Fin de Administracion de Usuarios*************************************
 //    *******************************Administración de Temas **********************************************
     public void ingresarTema(Tema tema) throws PersistenciaExcepcion {
 

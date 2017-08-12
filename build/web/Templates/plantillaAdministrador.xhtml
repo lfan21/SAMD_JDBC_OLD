@@ -9,7 +9,7 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="../../resources/css/estilo.css" />
-        <title>Facelets Template</title>
+        <title>Administrador</title>
     </h:head>
 
     <h:body>
@@ -51,7 +51,7 @@
 
                         <f:facet name="options">
 
-                            <p:commandButton type="button" value="Cerrar Sesión" icon="ui-icon-extlink" />
+                            <p:commandButton type="button" value="Cerrar Sesión" icon="ui-icon-extlink" actionListener="#{inicioSesionBean.cerrarSesion()}"/>
                         </f:facet>
 
 

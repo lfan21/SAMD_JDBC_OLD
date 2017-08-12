@@ -11,29 +11,49 @@
 
         <div id="contenedor">
 
-            <h:form id="frmOlvidoContrasenia" >
+            <p:dialog id="dlgOlvidoContraenia" header="Olvido de Contraseña" width="450" widgetVar="dlg" visible="true" closable="false" showEffect="clip" draggable="false" resizable="false"> 
 
-                <p:growl id="msjOlvidoContrasenia" autoUpdate="true" showDetail="true" />
+                <h:form id="frmOlvidoContrasenia" >
 
-                <h:panelGrid columns="2" style="margin: 0 auto "> 
+                    <p:growl id="msjOlvidoContrasenia" autoUpdate="true" showDetail="true" />
 
-                    <p:outputLabel for="usuario" value="Usuario: " />            
-                    <p:inputText id="usuario" required="true"/> 
+                    <h:panelGrid columns="2" style="margin: 0 auto "> 
 
-                    <p:outputLabel  value="Correo: " />            
-                    <p:inputText    required="true"/>
+                        <p:outputLabel for="usuario" value="Usuario: " />            
+                        <p:inputText id="usuario" required="true" value="#{olvidoContrasenia.cedula}"/> 
 
-                    <p:outputLabel  value="Repetir Correo: " />            
-                    <p:inputText   required="true"/>
+                        <p:outputLabel  for="correo" value="Correo: " />            
+                        <p:inputText   id="correo" required="true" value="#{olvidoContrasenia.correo}"/>
 
-
-                    <p:commandButton  id="ingresar" value="Resetear" /> 
-                     <p:commandButton  id="regresar" value="Volver" /> 
-                </h:panelGrid>
+                        <p:outputLabel  for="repetirCorreo" value="Repetir Correo: " />            
+                        <p:inputText id="repetirCorreo" required="true"/>
 
 
+                        <p:commandButton  id="resetear" value="Resetear"  actionListener="#{olvidoContrasenia.actualizarContraseniaCorreo()}"/> 
 
-            </h:form>
+
+
+                    </h:panelGrid>
+
+
+                </h:form>
+
+                <h:form>
+                    <h:panelGrid columns="1" style="margin: 0 auto "> 
+
+                        <p:commandButton  id="volver" value="Volver"  action="iniciarSesion.xhtml"/> 
+
+                    </h:panelGrid>
+
+                </h:form>
+
+
+
+
+
+
+
+            </p:dialog>
 
 
 

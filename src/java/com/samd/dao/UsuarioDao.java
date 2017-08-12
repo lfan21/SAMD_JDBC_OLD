@@ -13,6 +13,8 @@ public interface UsuarioDao {
     public void eliminarUsuario(Usuario usuario) throws PersistenciaExcepcion;
 
     public void modificarUsuario(Usuario usuario) throws PersistenciaExcepcion;
+    
+    public Usuario obtenerUsuario(int cedula) throws PersistenciaExcepcion;
 
     public Usuario validarUsuario(Usuario usuario) throws PersistenciaExcepcion;
 

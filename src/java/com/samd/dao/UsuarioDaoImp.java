@@ -238,9 +238,8 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
             ps.setInt(1, usuario.getCedula());
             rs = ps.executeQuery();
 
-            while (rs.next()) {       
-                
-                
+            while (rs.next()) {
+
             }
 
         } catch (SQLException ex) {
@@ -265,7 +264,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
             this.conectar();
             consulta = "UPDATE USUARIOS SET contrasenia = ? WHERE cedula = ?";
 
-            ps = this.getConn().prepareCall(consulta);
+            ps = this.getConn().prepareStatement(consulta);
 
             ps.setString(1, usuario.getContrasenia());
             ps.setInt(2, usuario.getCedula());
@@ -279,6 +278,49 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
         } finally {
             this.cerrarConexion();
         }
+    }
+
+    @Override
+    public Usuario obtenerUsuario(int cedula) throws PersistenciaExcepcion {
+
+        Statement st;
+        ResultSet rs;
+        String consulta;
+        Usuario us = null;
+
+        try {
+            this.conectar();
+            consulta = "SELECT * FROM Usuarios where cedula = cedula";
+            st = this.getConn().createStatement();
+            rs = st.executeQuery(consulta);
+
+            while (rs.next()) {
+                us = new Usuario();
+                us.setIdUsuario(rs.getInt("idUsuario"));
+                us.setNombre(rs.getString("nombre"));
+                us.setApellido(rs.getString("apellido"));
+                us.setCedula(rs.getInt("cedula"));
+                us.setContrasenia(rs.getString("contrasenia"));
+                us.setIdTipo(rs.getInt("TIPO_USUARIO_idTipo"));
+                us.setNroDocente(rs.getInt("nroDocente"));
+                us.setEstado(rs.getInt("estado"));
+                us.setCorreoElectronico(rs.getString("correoElectronico"));
+
+            }
+            rs.close();
+            st.close();
+
+        } catch (SQLException ex) {
+
+            throw new PersistenciaExcepcion("Ha ocurrido un error");
+
+        } finally {
+
+            this.cerrarConexion();
+        }
+
+        return us;
+
     }
 
 }
