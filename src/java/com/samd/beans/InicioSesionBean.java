@@ -64,7 +64,7 @@ public class InicioSesionBean {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.invalidate();
         
-        return "Views/iniciarSesion.xhtml";
+        return "/Views/iniciarSesion.xhtml";
     
     }
 
