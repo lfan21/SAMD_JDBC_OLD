@@ -7,15 +7,67 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" href="../../resources/css/estilo.css" />
-
-        <title>Alumno</title>
+        <!--        <h:outputStylesheet name="./css/default.css"/>
+                <h:outputStylesheet name="./css/cssLayout.css"/>-->
+        <title>Facelets Template</title>
     </h:head>
+        <style>
+        body {
+            background: #f2f2f2;
+        }
+        .tile {
+            height: 390px;
+            width: 390px;
+            float: left;
+            background: white;
+            border-radius: 12px 12px 10px 10px;
+            margin: 15px;
+            box-shadow: 0 2px 0 0 rgba(0,0,0,0.1);
+        }
+
+        .tile-contenido {
+            height: 330px;
+            width: 100%;
+            overflow-y: scroll;
+        }
+        .titulo {
+            display: block;
+            font-size: 24px;
+            line-height: 18px;
+            font-weight: bold;
+            color: white;
+            border-radius: 10px 10px 0 0;
+            background: #80c5dd;
+            padding: 20px 0 20px 0;
+            text-align: center;
+            width: 390px;
+            overflow: hidden; 
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .descripcion {
+            font-weight: 300;
+            word-break: break-word;
+            font-family: "ProximaNovaRegular", Helvetica, Arial, sans-serif !important;
+            font-size: 14px;
+            padding: 5px;
+        }
+        li {
+            display:block;
+        }
+        li a {
+            text-decoration: none;
+            color: #27a6d2;
+        }
+    </style>
+    
+    
 
     <h:body>
 
         <div id="top" class="top">
             <ui:insert name="top">
+
                 <h:form>  
                     <p:growl id="messages"/>
 
@@ -23,7 +75,7 @@
                         <p:submenu label="Usuario" icon="ui-icon-person">
 
                             <p:menuitem value="Cambiar Contraseña" icon="ui-icon-pencil" url="/Views/cambiarContrasenia.xhtml?faces-redirect=true" />
-                            <p:menuitem value="Cerrar Sesión" icon="ui-icon-person" url="#{inicioSesionBean.cerrarSesion()}"/>
+                            <p:menuitem value="Cerrar Sesión" icon="ui-icon-person" url=""/>
 
                         </p:submenu>
 
@@ -65,8 +117,6 @@
 
                     </p:menubar>
                 </h:form>
-
-
 
             </ui:insert>
         </div>

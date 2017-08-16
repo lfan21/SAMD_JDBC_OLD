@@ -1,71 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
         <ui:composition template="./../../Templates/plantillaAlumno.xhtml">
 
             <ui:define name="content">
-                <div id="contenedor">
-
-                    <div id="contenido">
-
-                        <div id="link">
-                            <a href="cascada.xhtml">
-                                <img src=""/>
-                                <p>Cascada</p>
-                            </a>
-                        </div>
-
-                        <div id="link">
-                            <a href="iterativoincremental.xhtml">
-                                <img src=""/>
-                                <p>Iterativo Incremental</p>
-                            </a>
-                        </div>
-
-                        <div id="link">
-                            <a href="espiral.xhtml">
-                                <img src=""/>
-                                <p>Espiral</p>
-                            </a>
-                        </div>
-
-                        <div id="link">
-                            <a href="prototipacion.xhtml">
-                                <img src=""/>
-                                <p>Prototipación</p>
-                            </a>
-                        </div>                
-
-                        <div id="link">
-                            <a href="extremeprogramming.xhtml">
-                                <img src=""/>
-                                <p>Extreme Programming</p>
-                            </a>
-                        </div>
-                        
-                           <div id="link">
-                               <a href="scrum.xhtml">
-                                <img src=""/>
-                                <p>Scrum</p>
-                            </a>
-                        </div>
-
-                        <div id="link">
-                            <a href="reutilizacion.xhtml">
-                                <img src=""/>
-                                <p>Reutilización de Componentes</p>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
+                <h:outputText value="#{inicioAlumnoControlador.getResult()}" escape="false"/>
             </ui:define>
 
         </ui:composition>
 
     </body>
 </html>
+
+

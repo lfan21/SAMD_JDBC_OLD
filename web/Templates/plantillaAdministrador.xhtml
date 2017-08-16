@@ -3,12 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" href="../../resources/css/estilo.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />  
+        <link href="resources/css/estilo.css" rel="stylesheet" type="text/css" />
         <title>Administrador</title>
     </h:head>
 
@@ -16,14 +15,15 @@
 
         <div id="top" class="top">
             <ui:insert name="top">
+
                 <h:form>  
                     <p:growl id="messages"/>
 
                     <p:menubar>
 
                         <p:submenu label="Administración de Usuarios" icon="ui-icon-person">
-                            <p:menuitem value="Ingresar Usuario" icon="ui-icon-plus" url="ingresarUsuario.xhtml" />
-                            <p:menuitem value="Buscar Usuario" icon="ui-icon-person" url="buscarUsuario.xhtml" />
+                            <p:menuitem value="Ingresar Usuario" icon="ui-icon-plus" url="/Views/admin/ingresarUsuario.xhtml?faces-redirect=true" />
+                            <p:menuitem value="Buscar Usuario" icon="ui-icon-person" url="/Views/admin/buscarUsuario.xhtml?faces-redirect=true"/>
                             <p:menuitem value="Cerrar Sesión" icon="ui-icon-person" url="#{inicioSesionBean.cerrarSesion()}?faces-redirect=true" />
                         </p:submenu>
 
@@ -50,13 +50,13 @@
 
                         </p:submenu>
 
-                 
-
-
                     </p:menubar>
                 </h:form>
 
+
+
             </ui:insert>
+
         </div>
 
         <div id="content" class="center_content">

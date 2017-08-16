@@ -85,32 +85,32 @@ public class Fachada {
 
     }
 
-    public void olvidoContrasenia(Usuario usuario) throws PersistenciaExcepcion{
+    public void olvidoContrasenia(Usuario usuario) throws PersistenciaExcepcion {
 
         String mensaje;
-        UsuarioDao usuarioDao = new UsuarioDaoImp();     
-        
+        UsuarioDao usuarioDao = new UsuarioDaoImp();
+
         Usuario usuarioAux = new Usuario();
-        
-        usuarioAux= obtenerUsuario(usuario.getCedula());
-        
+
+        usuarioAux = obtenerUsuario(usuario.getCedula());
+
         usuarioAux.setContrasenia(GeneradorDeContrasenia.getPassword());
-                
+
         usuarioDao.cambiarContrasenia(usuarioAux);
-        
+
         mensaje = "Se ha restablecido la contraseña del Usuario: " + usuarioAux.getCedula() + " a: " + usuarioAux.getContrasenia();
         Correo correo = new Correo();
         correo.setDestinatario(usuario.getCorreoElectronico());
         correo.setAsunto("Cambio de Contraseña");
         correo.setMensaje(mensaje);
-        
+
         correo.enviarCorreo();
 
     }
-    
-    public Usuario obtenerUsuario (int cedula) throws PersistenciaExcepcion{
-        
-        UsuarioDao usuarioDao = new UsuarioDaoImp();      
+
+    public Usuario obtenerUsuario(int cedula) throws PersistenciaExcepcion {
+
+        UsuarioDao usuarioDao = new UsuarioDaoImp();
         return usuarioDao.obtenerUsuario(cedula);
     }
 
@@ -168,6 +168,20 @@ public class Fachada {
 
         TeoricoDao teoricoDao = new TeoricoDaoImp();
         teoricoDao.modificarTeorico(teorico);
+
+    }
+
+    public List<Teorico> retornarTeoricosTema(Tema tema) throws PersistenciaExcepcion {
+
+        TeoricoDao teoricoDao = new TeoricoDaoImp();
+        return teoricoDao.retornarTeoricosTema(tema);
+
+    }
+
+    public Teorico retornarTeoricoPorId(int numero) throws PersistenciaExcepcion {
+
+        TeoricoDao teoricoDao = new TeoricoDaoImp();
+        return teoricoDao.retornarTeoricoPorId(numero);
 
     }
 //********************************** Gestion Preguntas ****************************************************

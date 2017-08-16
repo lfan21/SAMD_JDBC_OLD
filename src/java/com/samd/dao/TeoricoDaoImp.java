@@ -1,6 +1,7 @@
 package com.samd.dao;
 
 import com.samd.excepciones.PersistenciaExcepcion;
+import com.samd.modelo.Tema;
 import com.samd.modelo.Teorico;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -65,7 +66,7 @@ public class TeoricoDaoImp extends Conexion implements TeoricoDao {
 
     @Override
     public void eliminarTeorico(Teorico teorico) throws PersistenciaExcepcion {
-        
+
         String consulta;
         PreparedStatement ps;
 
@@ -76,7 +77,7 @@ public class TeoricoDaoImp extends Conexion implements TeoricoDao {
 
             ps.setInt(1, 0);
             ps.setInt(2, teorico.getIdTeorico());
-  
+
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -125,6 +126,83 @@ public class TeoricoDaoImp extends Conexion implements TeoricoDao {
 
     }
 
+    @Override
+    public List<Teorico> retornarTeoricosTema(Tema tema) throws PersistenciaExcepcion {
 
+        List<Teorico> retorno = null;
+        ResultSet rs;
+        PreparedStatement ps = null;
+
+        try {
+            String consulta = "SELECT * FROM Teorico WHERE TEMAS_idTema = ? AND estado=1 ";
+            this.conectar();
+            ps = this.getConn().prepareStatement(consulta);
+            ps.setInt(1, tema.getIdTema());
+
+            rs = ps.executeQuery();
+
+            retorno = new ArrayList<>();
+            while (rs.next()) {
+                Teorico teorico = new Teorico();
+                teorico.setIdTeorico(rs.getInt("idTeorico"));
+                teorico.setTitulo(rs.getString("titulo"));
+                teorico.setContenido(rs.getString("contenido"));
+                teorico.setIdTema(rs.getInt("TEMAS_idTema"));
+                teorico.setEstado(rs.getInt("estado"));
+                retorno.add(teorico);
+            }
+
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            throw new PersistenciaExcepcion("No se ha podido listar el teórico");
+
+        } finally {
+            this.cerrarConexion();
+        }
+
+        return retorno;
+
+    }
+
+    @Override
+    public Teorico retornarTeoricoPorId(int numero) throws PersistenciaExcepcion {
+
+        Teorico teorico = null;
+        ResultSet rs;
+        PreparedStatement ps = null;
+
+        try {
+            String consulta = "SELECT * FROM Teorico WHERE idTeorico = ? AND estado=1 ";
+            this.conectar();
+            ps = this.getConn().prepareStatement(consulta);
+            ps.setInt(1, numero);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                teorico = new Teorico();
+                teorico.setIdTeorico(rs.getInt("idTeorico"));
+                teorico.setTitulo(rs.getString("titulo"));
+                teorico.setContenido(rs.getString("contenido"));
+                teorico.setIdTema(rs.getInt("TEMAS_idTema"));
+                teorico.setEstado(rs.getInt("estado"));
+         
+            }
+
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            throw new PersistenciaExcepcion("No se ha podido listar el teórico");
+
+        } finally {
+            this.cerrarConexion();
+        }
+
+        return teorico;
+
+    }
 
 }

@@ -144,6 +144,8 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
         }
     }
 
+    
+    //Valida cedula y contraseña ingresados por el usuario, si coinicide con la BD devuelve todos los datos del usuario.
     @Override
     public Usuario validarUsuario(Usuario usuario) throws PersistenciaExcepcion {
 
@@ -223,6 +225,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
         return listTipoUsuario;
     }
 
+    //Valida si la la cedula ingresada existe y devuelve los datos para esa cedula
     @Override
     public Usuario existeUsuario(Usuario usuario) throws PersistenciaExcepcion {
         Usuario us = null;
@@ -280,6 +283,7 @@ public class UsuarioDaoImp extends Conexion implements UsuarioDao {
         }
     }
 
+   
     @Override
     public Usuario obtenerUsuario(int cedula) throws PersistenciaExcepcion {
 
