@@ -42,13 +42,13 @@ public class InicioSesionBean {
 
             switch (us.getIdTipo()) {
                 case 1:
-                    url = "/Views/admin/inicioAdmin.xhtml";
+                    url = "/Views/admin/inicioAdmin.xhtml?faces-redirect=true";
                     break;
                 case 2:
-                    url = "/Views/docente/inicioDocente.xhtml";
+                    url = "/Views/docente/inicioDocente.xhtml?faces-redirect=true";
                     break;
                 case 3:
-                    url = "/Views/alumno/inicioAlumno.xhtml";
+                    url = "/Views/alumno/inicioAlumno.xhtml?faces-redirect=true";
                     break;
             }
         } else {

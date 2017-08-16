@@ -9,7 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <!--        <h:outputStylesheet name="./css/default.css"/>
                 <h:outputStylesheet name="./css/cssLayout.css"/>-->
-        <title>Facelets Template</title>
+        <title>Alumno</title>
     </h:head>
         <style>
         body {
@@ -75,7 +75,7 @@
                         <p:submenu label="Usuario" icon="ui-icon-person">
 
                             <p:menuitem value="Cambiar Contraseña" icon="ui-icon-pencil" url="/Views/cambiarContrasenia.xhtml?faces-redirect=true" />
-                            <p:menuitem value="Cerrar Sesión" icon="ui-icon-person" url=""/>
+                            <p:menuitem value="Cerrar Sesión" icon="ui-icon-person" url="#{inicioSesionBean.cerrarSesion()}?faces-redirect=true"/>
 
                         </p:submenu>
 
