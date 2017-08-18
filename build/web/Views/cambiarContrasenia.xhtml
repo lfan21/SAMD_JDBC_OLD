@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>       
+        <title>Cambiar Contraseña</title>
+    </h:head>
+        <style>
+        body {
+            background: #f2f2f2;
+        }
+    </style>
+    
+    <h:body>
+        <div id="contenedor">
+
+            <h:form id="frmCambiarContrasenia"> 
+
+                <p:growl id="mensajes" autoUpdate="true"  showDetail="true"/>
+
+                <p:dialog id="dlgOlvidoContraenia" header="Olvido de Contraseña" width="450" widgetVar="dlg" visible="true" closable="false" showEffect="clip" draggable="false" resizable="false">
+
+                    <h:panelGrid columns="2" cellpadding="5">
+
+                        <p:outputLabel for="contraseniaAnterior" value="Ingrese contraseña anterior" />
+                        <p:password id="contraseniaAnterior" value="#{cambiarContrasenia.nuevaContrasenia}" required="true" />
+
+                        <p:outputLabel for="nuevaContrasenia" value="Ingrese nueva contraseña" />
+                        <p:password id="nuevaContrasenia" match="confContrasenia"  validatorMessage="No coinciden las contraseñas" value="" required="true" feedback="true" inline="true" promptLabel="Nueva Contraseña" weakLabel="Débil" goodLabel="Normal" strongLabel="Fuerte"/>
+
+                        <p:outputLabel for="confContrasenia" value="Confirmar nueva contraseña" />
+                        <p:password id="confContrasenia" value=""  required="true" feedback="true" inline="true" promptLabel="Nueva Contraseña" weakLabel="Débil" goodLabel="Normal" strongLabel="Fuerte"/>
+
+                        <p:commandButton value="Cambiar" actionListener="#{cambiarContrasenia.cambiarContrasenia()}"/>
+                       
+                    </h:panelGrid>
+
+                </p:dialog>
+
+            </h:form> 
+
+        </div>
+
+    </h:body>
+</html>
+
